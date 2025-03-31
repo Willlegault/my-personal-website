@@ -1,24 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import Header from '../Components/Header';
 
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-white shadow-md z-50">
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-800">William Legault</h1>
-            <div className="space-x-6">
-              <a href="#about" className="text-gray-600 hover:text-gray-900">About</a>
-              <a href="#projects" className="text-gray-600 hover:text-gray-900">Projects</a>
-              <a href="#skills" className="text-gray-600 hover:text-gray-900">Skills</a>
-              <a href="#contact" className="text-gray-600 hover:text-gray-900">Contact</a>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-6">
