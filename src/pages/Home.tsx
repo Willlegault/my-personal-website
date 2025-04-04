@@ -33,9 +33,8 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <p className="text-gray-600">
-                I am a computer science student with a passion for software development
-                and problem-solving. I enjoy working on projects that challenge me to
-                learn new technologies and improve my skills.
+                Hi, I'm William Legault, a [Your Profession/Title] with expertise in [Your Key Skills]. I have a passion for [Your Interests or Focus Areas].
+                With experience in [Briefly Mention Key Experience from Resume], I strive to deliver impactful solutions through my work.
               </p>
             </div>
             <div>
@@ -54,16 +53,19 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Project cards will go here */}
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-2">Project 1</h3>
-              <p className="text-gray-600">Description of your first project</p>
+              <h3 className="text-xl font-semibold mb-2">Project Name 1</h3>
+              <p className="text-gray-600">[Brief Description from Resume]</p>
+              <a href="#" className="text-blue-500 hover:underline">Link to Project</a>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-2">Project 2</h3>
-              <p className="text-gray-600">Description of your second project</p>
+              <h3 className="text-xl font-semibold mb-2">Project Name 2</h3>
+              <p className="text-gray-600">[Brief Description from Resume]</p>
+              <a href="#" className="text-blue-500 hover:underline">Link to Project</a>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-2">Project 3</h3>
-              <p className="text-gray-600">Description of your third project</p>
+              <h3 className="text-xl font-semibold mb-2">Project Name 3</h3>
+              <p className="text-gray-600">[Brief Description from Resume]</p>
+              <a href="#" className="text-blue-500 hover:underline">Link to Project</a>
             </div>
           </div>
         </div>
