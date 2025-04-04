@@ -17,10 +17,10 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl font-bold text-gray-900 mb-4">
-              Computer Science Student
+              Computer Science Student & Full Stack Developer
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              Passionate about building innovative solutions and learning new technologies
+              Passionate about building innovative software solutions, with experience in full-stack development and a focus on creating impactful applications
             </p>
           </motion.div>
         </div>
@@ -33,14 +33,15 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <p className="text-gray-600">
-                Hi, I'm William Legault, a [Your Profession/Title] with expertise in [Your Key Skills]. I have a passion for [Your Interests or Focus Areas].
-                With experience in [Briefly Mention Key Experience from Resume], I strive to deliver impactful solutions through my work.
+                Hi, I'm William Legault, a Computer Science student at Northeastern University with expertise in full-stack development, app development and cloud technologies. I have a passion for creating intuitive user experiences and building scalable backend systems.
+                With professional experience in Software Development and DevOps Engineering, I strive to deliver efficient and impactful solutions.
               </p>
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-4">Education</h3>
-              <p className="text-gray-600">Computer Science Student</p>
-              <p className="text-gray-500">Expected Graduation: [Your Year]</p>
+              <p className="text-gray-600">Computer Science Student at Northeastern University</p>
+              <p className="text-gray-500">Expected Graduation: 2025</p>
+              <p className="text-gray-500 mt-2">Currently pursuing a Software Development in the Cloud concentration</p>
             </div>
           </div>
         </div>
@@ -51,21 +52,20 @@ const Home: React.FC = () => {
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Project cards will go here */}
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-2">Project Name 1</h3>
-              <p className="text-gray-600">[Brief Description from Resume]</p>
-              <a href="#" className="text-blue-500 hover:underline">Link to Project</a>
+              <h3 className="text-xl font-semibold mb-2">Portfolio Website</h3>
+              <p className="text-gray-600">A modern personal website built using React, TypeScript, and Tailwind CSS. Features responsive design and smooth animations.</p>
+              <a href="https://github.com/yourusername/my-personal-website" className="text-blue-500 hover:underline">View Project</a>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-2">Project Name 2</h3>
-              <p className="text-gray-600">[Brief Description from Resume]</p>
-              <a href="#" className="text-blue-500 hover:underline">Link to Project</a>
+              <h3 className="text-xl font-semibold mb-2">Supply Chain Management Application</h3>
+              <p className="text-gray-600">Developed a full-stack web application for supply chain management. Built with React, Node.js, and MongoDB.</p>
+              <a href="https://sophia-rho.vercel.app" className="text-blue-500 hover:underline">View Project</a>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-2">Project Name 3</h3>
-              <p className="text-gray-600">[Brief Description from Resume]</p>
-              <a href="#" className="text-blue-500 hover:underline">Link to Project</a>
+              <h3 className="text-xl font-semibold mb-2">Docker Deployment Application</h3>
+              <p className="text-gray-600">Created a DevOps tool for automated Docker container deployment using Python and Docker SDK.</p>
+              <a href="#" className="text-blue-500 hover:underline">View Project</a>
             </div>
           </div>
         </div>
@@ -79,25 +79,25 @@ const Home: React.FC = () => {
             <div className="text-center">
               <div className="bg-gray-100 p-4 rounded-lg">
                 <p className="font-semibold">Programming</p>
-                <p className="text-gray-600">JavaScript, Python, Java</p>
+                <p className="text-gray-600">JavaScript, Python, Java, TypeScript, SQL</p>
               </div>
             </div>
             <div className="text-center">
               <div className="bg-gray-100 p-4 rounded-lg">
                 <p className="font-semibold">Web Development</p>
-                <p className="text-gray-600">React, HTML, CSS</p>
+                <p className="text-gray-600">React, Node.js, Express, HTML/CSS, Tailwind</p>
               </div>
             </div>
             <div className="text-center">
               <div className="bg-gray-100 p-4 rounded-lg">
-                <p className="font-semibold">Tools</p>
-                <p className="text-gray-600">Git, VS Code, Docker</p>
+                <p className="font-semibold">DevOps & Cloud</p>
+                <p className="text-gray-600">Docker, AWS, Git, CI/CD, Linux</p>
               </div>
             </div>
             <div className="text-center">
               <div className="bg-gray-100 p-4 rounded-lg">
                 <p className="font-semibold">Other</p>
-                <p className="text-gray-600">Problem Solving, Team Work</p>
+                <p className="text-gray-600">Agile, Team Leadership, Problem Solving</p>
               </div>
             </div>
           </div>
@@ -109,13 +109,13 @@ const Home: React.FC = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Me</h2>
           <div className="flex justify-center space-x-6">
-            <a href="https://github.com/yourusername" className="text-gray-600 hover:text-gray-900">
+            <a href="https://github.com/Willlegault" className="text-gray-600 hover:text-gray-900">
               <FaGithub size={24} />
             </a>
-            <a href="https://linkedin.com/in/yourusername" className="text-gray-600 hover:text-gray-900">
+            <a href="https://www.linkedin.com/in/william-legault-a1426b2a9/" className="text-gray-600 hover:text-gray-900">
               <FaLinkedin size={24} />
             </a>
-            <a href="mailto:your.email@example.com" className="text-gray-600 hover:text-gray-900">
+            <a href="mailto:legault.w@northeastern.edu" className="text-gray-600 hover:text-gray-900">
               <FaEnvelope size={24} />
             </a>
           </div>
@@ -129,8 +129,8 @@ const Home: React.FC = () => {
             <div className="mb-4 md:mb-0">
               <p>&copy; {new Date().getFullYear()} William Legault. All rights reserved.</p>
             </div>
-            <div className="flex space-x-6">
-              <a href="https://github.com/yourusername" className="hover:text-gray-300">
+            {/* <div className="flex space-x-6">
+              <a href="https://github.com/Willlegault" className="hover:text-gray-300">
                 <FaGithub size={20} />
               </a>
               <a href="https://linkedin.com/in/yourusername" className="hover:text-gray-300">
@@ -139,7 +139,7 @@ const Home: React.FC = () => {
               <a href="mailto:your.email@example.com" className="hover:text-gray-300">
                 <FaEnvelope size={20} />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>
