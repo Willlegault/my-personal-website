@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import Header from '../Components/Header';
+import summitAppIcon from '../assets/summit-app-icon.png';
+import huskyBlackIcon from '../assets/husky_black.png';
+import sculptIcon from '../assets/icon.png';
 
 const Home: React.FC = () => {
   const fadeInUp = {
@@ -64,27 +67,6 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 gap-8">
             <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700">
               <div className="mb-4">
-                <h3 className="text-2xl font-bold mb-1 text-slate-900 dark:text-slate-50">Recreation Software Developer (Co-op)</h3>
-                <p className="text-slate-600 text-[0.95rem] mt-1 dark:text-slate-400">Northeastern University | Aug. 2025 – Present</p>
-              </div>
-              <ul className="list-none pl-0 text-slate-600 leading-[1.7] dark:text-slate-400">
-                <li className="relative pl-6 mb-3 before:content-['▸'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">Led full-stack development of a React Native fitness app and React/Node.js admin dashboard, transforming a prototype into a production-ready platform with backend services deployed via AWS and Vercel</li>
-                <li className="relative pl-6 mb-3 before:content-['▸'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">Collaborated with managers to design admin workflows, implement live notifications, and streamline AWS infrastructure by optimizing database interactions and load balancer usage for performance and scalability</li>
-                <li className="relative pl-6 mb-3 before:content-['▸'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">Developed, tested, and optimized the app for both iOS and Android, using crash reports and custom Notion API–based bug reports to improve reliability and user experience</li>
-              </ul>
-            </div>
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700">
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold mb-1 text-slate-900 dark:text-slate-50">Software Engineering Intern</h3>
-                <p className="text-slate-600 text-[0.95rem] mt-1 dark:text-slate-400">Sculpt.ai (Remote) | Oct. 2025 – Present</p>
-              </div>
-              <ul className="list-none pl-0 text-slate-600 leading-[1.7] dark:text-slate-400">
-                <li className="relative pl-6 mb-3 before:content-['▸'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">Built a React-based web app consuming backend REST APIs for fitness and diet analytics, improving modularity, scalability, and independent deployment</li>
-                <li className="relative pl-6 mb-3 before:content-['▸'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">Collaborated with engineers and domain experts to verify algorithm accuracy, implemented standardized UI components using Shadcn, and integrated full-stack workflows for rapid testing and data visualization</li>
-              </ul>
-            </div>
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700">
-              <div className="mb-4">
                 <h3 className="text-2xl font-bold mb-1 text-slate-900 dark:text-slate-50">Immersive Media Lab Office Assistant</h3>
                 <p className="text-slate-600 text-[0.95rem] mt-1 dark:text-slate-400">Northeastern College of Arts and Media Design | Jan. 2025 – April 2025</p>
               </div>
@@ -103,32 +85,59 @@ const Home: React.FC = () => {
           <h2 className="text-5xl font-extrabold mb-12 text-center tracking-tight text-slate-900 dark:text-slate-50">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700">
-              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-50">Sophia: Philosophical Journal</h3>
-              <p className="text-sm text-indigo-500 font-semibold mb-3">React.js | Supabase | Node.js & Express.js</p>
+              <div className="flex items-center mb-3">
+                <img src={huskyBlackIcon} alt="Northeastern Husky Icon" className="w-10 h-10 mr-4"/>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Active Husky</h3>
+              </div>
+              <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | AWS | Vercel | Node.js</p>
               <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
-                Developed a mental health-based journaling web application using React and Supabase, implementing CRUD functionality, 
-                Row Level Security Policies for tracking journaling history and streak progress. Built a scalable authentication system 
-                with email-based login and integrated dynamic UI components like a calendar feature.
+                Led full-stack development of a fitness app and admin dashboard, deployed on AWS and Vercel for scalability and performance.
               </p>
             </div>
             <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700">
-              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-50">Summit: Debt Relief</h3>
+              <div className="flex items-center mb-3">
+                <img src={sculptIcon} alt="Sculpt.ai App Icon" className="w-10 h-10 mr-4"/>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Sculpt.ai</h3>
+              </div>
+              <p className="text-sm text-indigo-500 font-semibold mb-3">React | REST APIs | Shadcn UI</p>
+              <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
+                Built a web app for fitness and diet analytics, focusing on modular design and data visualization with a standardized UI.
+              </p>
+            </div>
+            <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700">
+              <div className="flex items-center mb-3">
+                <img src={summitAppIcon} alt="Summit App Icon" className="w-10 h-10 mr-4"/>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Summit: Debt Relief</h3>
+              </div>
               <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | MongoDB | JavaScript | Node.js</p>
               <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
-                Developed a React Native demo app featuring an AI chatbot assistant, backed by a MongoDB-based API for user onboarding 
-                and data storage. Designed and presented multiple stages of app demos to judges, showcasing real-world problem-solving 
-                capabilities and advancing the lifecycle of app development.
+                A demo app featuring an AI chatbot, user onboarding, and a MongoDB-backed API for data storage, showcasing rapid prototyping and development.
+              </p>
+            </div>
+            <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700">
+              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-50">Sophia: Philosophical Journal</h3>
+              <p className="text-sm text-indigo-500 font-semibold mb-3">React.js | Supabase | Node.js & Express.js</p>
+              <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
+                A mental health journaling app with secure authentication, CRUD operations for entries, and progress tracking via a calendar view.
               </p>
             </div>
             <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700">
               <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-50">Cloud Web Application</h3>
               <p className="text-sm text-indigo-500 font-semibold mb-3">AWS | SQL | Shell</p>
               <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
-                Built a scalable web application on AWS using services like EC2, S3, RDS, gaining practical experience in cloud architecture, 
-                performance optimization, and cost-efficient resource management. Ensured high availability and reliability by leveraging 
-                AWS tools and best practices, load balancing, and maintaining robust infrastructure.
+                A scalable web app on AWS using EC2, S3, and RDS, focusing on cloud architecture, performance, and cost-effective resource management.
               </p>
             </div>
+            <a 
+              href="https://github.com/Willlegault" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-center items-center h-full text-center hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700"
+            >
+              <FaGithub className="text-5xl mb-4 text-slate-800 dark:text-slate-200" />
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Explore My Projects</h3>
+              <p className="text-slate-600 mt-2 dark:text-slate-400">View my repositories and contributions on GitHub.</p>
+            </a>
           </div>
         </div>
       </section>
