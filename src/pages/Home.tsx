@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 import Header from '../Components/Header';
 import summitAppIcon from '../assets/summit-app-icon.png';
 import huskyBlackIcon from '../assets/husky_black.png';
@@ -165,7 +165,29 @@ const Home: React.FC = () => {
       </section>
 
 
-    </div>
+    {/* Social Icons Footer */}
+    <footer className="w-full flex flex-col items-center justify-center py-10 bg-transparent">
+      <div className="flex gap-8">
+        <a
+          href="https://linkedin.com/in/william-legault"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="text-slate-500 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white text-3xl transition-colors"
+        >
+          <FaLinkedin />
+        </a>
+        <a
+          href="mailto:Willlegault24@gmail.com"
+          aria-label="Gmail"
+          className="text-slate-500 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white text-3xl transition-colors"
+        >
+          <FaEnvelope />
+        </a>
+      </div>
+      <span className="mt-4 text-xs text-slate-500 dark:text-slate-400">&copy; {new Date().getFullYear()} William Legault</span>
+    </footer>
+  </div>
   );
 };
 
