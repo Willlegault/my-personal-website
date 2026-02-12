@@ -8,6 +8,47 @@ import huskyBlackIcon from '../assets/husky_black.png';
 import sculptIcon from '../assets/icon.png';
 
 const Home: React.FC = () => {
+    // Scroll to About section when user scrolls from the hero
+    React.useEffect(() => {
+      let triggered = false;
+      // Custom smooth scroll with longer duration
+      interface ScrollState {
+        start?: number;
+      }
+
+      function slowScrollTo(targetY: number, duration: number = 1200): void {
+        const startY: number = window.scrollY;
+        const diff: number = targetY - startY;
+        const scrollState: ScrollState = {};
+
+        function step(timestamp: number): void {
+          if (!scrollState.start) scrollState.start = timestamp;
+          const elapsed: number = timestamp - scrollState.start;
+          const progress: number = Math.min(elapsed / duration, 1);
+          window.scrollTo(0, startY + diff * progress);
+          if (progress < 1) {
+        window.requestAnimationFrame(step);
+          }
+        }
+        window.requestAnimationFrame(step);
+      }
+
+      const handleScroll = () => {
+        if (triggered) return;
+        const hero = document.querySelector('.hero-section');
+        if (!hero) return;
+        const about = document.getElementById('about');
+        if (!about) return;
+        // If user scrolls past 50px from top, jump to About only once
+        if (window.scrollY > 50 && window.scrollY < about.offsetTop - 10) {
+          triggered = true;
+          // Raise scroll target by 60px for better visibility
+          slowScrollTo(about.offsetTop - 60, 1200);
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -19,7 +60,7 @@ const Home: React.FC = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="min-h-[80vh] flex items-center justify-center pt-20 relative bg-[radial-gradient(at_0%_0%,rgba(99,102,241,0.15)_0px,transparent_50%),radial-gradient(at_100%_0%,rgba(16,185,129,0.1)_0px,transparent_50%),radial-gradient(at_100%_100%,rgba(244,63,94,0.1)_0px,transparent_50%),radial-gradient(at_0%_100%,rgba(139,92,246,0.15)_0px,transparent_50%)] bg-slate-50 dark:bg-slate-900">
+      <section className="hero-section min-h-[80vh] flex items-center justify-center pt-20 relative bg-[radial-gradient(at_0%_0%,rgba(99,102,241,0.15)_0px,transparent_50%),radial-gradient(at_100%_0%,rgba(16,185,129,0.1)_0px,transparent_50%),radial-gradient(at_100%_100%,rgba(244,63,94,0.1)_0px,transparent_50%),radial-gradient(at_0%_100%,rgba(139,92,246,0.15)_0px,transparent_50%)] bg-slate-50 dark:bg-slate-900">
         <div className="max-w-[1100px] mx-auto relative z-10 px-6 text-center">
           <motion.div {...fadeInUp}>
             <h1 className="text-6xl md:text-7xl leading-tight font-extrabold mb-6 pb-2 tracking-tight bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 bg-clip-text text-transparent dark:from-slate-50 dark:to-indigo-300">
