@@ -6,7 +6,7 @@ const Header: React.FC = () => {
       <nav className="max-w-[1200px] mx-auto px-6">
         <div className="flex items-center justify-between h-[4.5rem]">
           <div className="flex-shrink-0 flex items-center">
-            <h1 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 to-indigo-500 bg-clip-text text-transparent m-0 cursor-pointer dark:from-slate-50">
+            <h1 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 bg-clip-text text-transparent m-0 cursor-pointer pb-1 dark:from-slate-50 dark:to-indigo-300">
               William Legault
             </h1>
           </div>
