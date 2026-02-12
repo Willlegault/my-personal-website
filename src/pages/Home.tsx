@@ -106,7 +106,7 @@ const Home: React.FC = () => {
         <div className="max-w-[1100px] mx-auto relative z-10">
           <h2 className="text-5xl font-extrabold mb-10 text-center tracking-tight text-slate-900 dark:text-slate-50">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Link to="/active-husky" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700 cursor-pointer">
+            <Link to="/active-husky" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer">
               <div className="flex items-center mb-3">
                 <img src={huskyBlackIcon} alt="Northeastern Husky Icon" className="w-10 h-10 mr-4"/>
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Active Husky</h3>
@@ -116,7 +116,7 @@ const Home: React.FC = () => {
                 Led full-stack development of a fitness app and admin dashboard, deployed on AWS and Vercel for scalability and performance.
               </p>
             </Link>
-            <Link to="/sculpt" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700 cursor-pointer">
+            <Link to="/sculpt" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer">
               <div className="flex items-center mb-3">
                 <img src={sculptIcon} alt="Sculpt.ai App Icon" className="w-10 h-10 mr-4"/>
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Sculpt.ai</h3>
