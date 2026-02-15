@@ -1,9 +1,10 @@
-import React from 'react';
+import { useState } from 'react';
+import type { FC } from 'react';
 import { FaExternalLinkAlt, FaArrowLeft } from 'react-icons/fa';
 import huskyBlackIcon from '../assets/husky_black.png';
 
-const ActiveHusky: React.FC = () => {
-  const [hover, setHover] = React.useState(false);
+const ActiveHusky: FC = () => {
+  const [hover, setHover] = useState(false);
 
   return (
     <div className="min-h-screen w-full bg-[#180202] dark:bg-[#220404] pb-20">

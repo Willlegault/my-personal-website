@@ -1,9 +1,10 @@
-import React from 'react';
+import { useState } from 'react';
+import type { FC } from 'react';
 import { FaExternalLinkAlt, FaArrowLeft } from 'react-icons/fa';
 import sculptIcon from '../assets/icon.png';
 
-const Sculpt: React.FC = () => {
-  const [hover, setHover] = React.useState(false);
+const Sculpt: FC = () => {
+  const [hover, setHover] = useState(false);
 
   return (
     <div className="min-h-screen w-full bg-[#232323] pb-20">

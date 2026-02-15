@@ -1,4 +1,5 @@
-import React from 'react';
+import { useEffect } from 'react';
+import type { FC } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa';
@@ -7,9 +8,9 @@ import summitAppIcon from '../assets/summit-app-icon.png';
 import huskyBlackIcon from '../assets/husky_black.png';
 import sculptIcon from '../assets/icon.png';
 
-const Home: React.FC = () => {
+const Home: FC = () => {
     // Scroll to About section when user scrolls from the hero
-    React.useEffect(() => {
+    useEffect(() => {
       let triggered = false;
       // Custom smooth scroll with longer duration
       interface ScrollState {
