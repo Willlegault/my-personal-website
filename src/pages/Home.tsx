@@ -3,12 +3,25 @@ import type { FC } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa';
+import { FiArrowRight, FiDownload } from 'react-icons/fi';
 import Header from '../Components/Header';
+import { usePortfolioMode } from '../context/PortfolioModeContext';
 import summitAppIcon from '../assets/summit-app-icon.png';
 import huskyBlackIcon from '../assets/husky_black.png';
 import sculptIcon from '../assets/icon.png';
 
+const SWE_SKILLS = new Set(['Java', 'JavaScript', 'TypeScript', 'React', 'React Native', 'Kotlin', 'MongoDB', 'Firebase', 'Express', 'Supabase', 'AWS', 'Object-Oriented Design', 'Cloud Architecture']);
+const BIOTECH_SKILLS = new Set(['Python', 'Biostatistics']);
+
+function skillClass(skill: string, mode: 'swe' | 'biotech'): string {
+  if (!SWE_SKILLS.has(skill) && !BIOTECH_SKILLS.has(skill)) return '';
+  if (mode === 'swe' && SWE_SKILLS.has(skill)) return '';
+  if (mode === 'biotech' && BIOTECH_SKILLS.has(skill)) return '';
+  return 'opacity-25 scale-95';
+}
+
 const Home: FC = () => {
+  const { mode } = usePortfolioMode();
     // Scroll to About section when user scrolls from the hero
     useEffect(() => {
       let triggered = false;
@@ -73,6 +86,16 @@ const Home: FC = () => {
             <p className="text-base text-slate-600 mt-4 font-medium dark:text-slate-400">
               Available: April - December 2026 | Boston, MA
             </p>
+
+            {/* Download resume */}
+            <a
+              href="/resumes/William_Legault_Resume_Backend.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg bg-indigo-500 hover:bg-indigo-600 mt-6"
+            >
+              <FiDownload className="text-base" />
+              Download Resume
+            </a>
           </motion.div>
         </div>
       </section>
@@ -111,7 +134,7 @@ const Home: FC = () => {
                   <h3 className="text-xl font-bold mb-4 text-center text-slate-900 dark:text-slate-50 border-b pb-2">Languages</h3>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {['Java', 'Python', 'JavaScript', 'TypeScript', 'React', 'React Native', 'Kotlin'].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600">
+                      <span key={skill} className={`px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 transition-all duration-300 ${skillClass(skill, mode)}`}>
                         {skill}
                       </span>
                     ))}
@@ -121,7 +144,7 @@ const Home: FC = () => {
                   <h3 className="text-xl font-bold mb-4 text-center text-slate-900 dark:text-slate-50 border-b pb-2">Frameworks & Tools</h3>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {['MongoDB', 'SQLite', 'Firebase', 'Express', 'Supabase', 'GitHub', 'AWS', 'Postman', 'Figma'].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600">
+                      <span key={skill} className={`px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 transition-all duration-300 ${skillClass(skill, mode)}`}>
                         {skill}
                       </span>
                     ))}
@@ -131,7 +154,7 @@ const Home: FC = () => {
                   <h3 className="text-xl font-bold mb-4 text-center text-slate-900 dark:text-slate-50 border-b pb-2">Relevant Knowledge</h3>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {['Object-Oriented Design', 'Data Structures', 'Cloud Architecture', 'Cybersecurity', 'Biostatistics'].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 hover:bg-white hover:border-indigo-300 transition-colors dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 dark:hover:border-indigo-500">
+                      <span key={skill} className={`px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 transition-all duration-300 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 ${skillClass(skill, mode)}`}>
                         {skill}
                       </span>
                     ))}
@@ -148,45 +171,62 @@ const Home: FC = () => {
         <div className="max-w-[1100px] mx-auto relative z-10">
           <h2 className="text-5xl font-extrabold mb-10 text-center tracking-tight text-slate-900 dark:text-slate-50">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Link to="/active-husky" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer">
+            <Link to="/active-husky" className={`bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer ${mode === 'biotech' ? 'opacity-40' : ''}`}>
               <div className="flex items-center mb-3">
                 <img src={huskyBlackIcon} alt="Northeastern Husky Icon" className="w-10 h-10 mr-4"/>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Active Husky</h3>
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">Active Husky <FiArrowRight className="text-indigo-400 text-xl" /></h3>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Co-op</span>
+                </div>
               </div>
               <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | AWS | Vercel | Node.js</p>
-              <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
-                Led full-stack development of a fitness app and admin dashboard, deployed on AWS and Vercel for scalability and performance.
+              <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">
+                A fitness class scheduling and tracking platform built for Northeastern University students, supporting 6,000+ active users across iOS and Android.
               </p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Lead Full-Stack Developer — mobile app and admin CMS, end-to-end.</p>
             </Link>
-            <Link to="/sculpt" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer">
+            <Link to="/sculpt" className={`bg-white p-10 rounded-2xl shadow-sm border transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg cursor-pointer dark:bg-slate-800 ${mode === 'biotech' ? 'border-emerald-400 shadow-emerald-100 hover:border-emerald-500 dark:border-emerald-600' : 'border-slate-200 hover:border-indigo-400 dark:border-slate-700'}`}>
               <div className="flex items-center mb-3">
                 <img src={sculptIcon} alt="Sculpt.ai App Icon" className="w-10 h-10 mr-4"/>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Sculpt.ai</h3>
-              </div> 
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">Sculpt.ai <FiArrowRight className="text-indigo-400 text-xl" /></h3>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Intern</span>
+                </div>
+              </div>
               <p className="text-sm text-indigo-500 font-semibold mb-3">React | REST APIs | Shadcn UI</p>
-              <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
-                Built a web app for fitness and diet analytics, focusing on modular design and data visualization with a standardized UI.
+              <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">
+                A fitness and dietary analytics platform for paid users, translating complex health data into professional-grade visual insights.
               </p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Frontend UI Developer — user-facing app, internal admin interface, and health analytics visualization.</p>
             </Link>
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700">
+            <div className={`bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700 ${mode === 'biotech' ? 'opacity-40' : ''}`}>
               <div className="flex items-center mb-3">
                 <img src={summitAppIcon} alt="Summit App Icon" className="w-10 h-10 mr-4"/>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Summit: Debt Relief</h3>
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Summit: Debt Relief</h3>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Hackathon</span>
+                </div>
               </div>
               <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | MongoDB | JavaScript | Node.js</p>
               <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
                 A demo app featuring an AI chatbot, user onboarding, and a MongoDB-backed API for data storage, showcasing rapid prototyping and development.
               </p>
             </div>
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700">
-              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-50">Sophia: Philosophical Journal</h3>
+            <div className={`bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700 ${mode === 'biotech' ? 'opacity-40' : ''}`}>
+              <div className="mb-3">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Sophia: Philosophical Journal</h3>
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Hackathon</span>
+              </div>
               <p className="text-sm text-indigo-500 font-semibold mb-3">React.js | Supabase | Node.js & Express.js</p>
               <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
                 A mental health journaling app with secure authentication, CRUD operations for entries, and progress tracking via a calendar view.
               </p>
             </div>
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700">
-              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-50">Cloud Web Application</h3>
+            <div className={`bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700 ${mode === 'biotech' ? 'opacity-40' : ''}`}>
+              <div className="mb-3">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Cloud Web Application</h3>
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Personal</span>
+              </div>
               <p className="text-sm text-indigo-500 font-semibold mb-3">AWS | SQL | Shell</p>
               <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
                 A scalable web app on AWS using EC2, S3, and RDS, focusing on cloud architecture, performance, and cost-effective resource management.

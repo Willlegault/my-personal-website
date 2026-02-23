@@ -49,7 +49,7 @@ const ActiveHusky: FC = () => {
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-white dark:text-white mb-4">What I Did</h3>
                 <p className="mb-4 text-white dark:text-white">
-                  I transformed an initial prototype into a robust, production-ready fitness platform supporting over 6,000 users. This involved building a cross-platform mobile app for iOS and Android and a comprehensive React/Node.js admin dashboard for user management and real-time monitoring.
+                  I transformed an initial prototype into a robust, production-ready fitness platform supporting over 6,000 users. This involved building a cross-platform mobile app for iOS and Android and a comprehensive React/Node.js admin CMS with role-based access control, fitness class content scheduling, real-time user management, and performance monitoring at scale.
                 </p>
                 <p className="mb-4 text-white dark:text-white">
                   I'm currently onboarding the next developer, having designed a tailored learning track, ownership track, and timeline to help him integrate smoothly into the development process and take ownership of key features.

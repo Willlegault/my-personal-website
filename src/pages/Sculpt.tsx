@@ -51,6 +51,9 @@ const Sculpt: FC = () => {
                 <p className="mb-4 text-black">
                   I built a React-based web application designed to translate complex backend health and performance analytics into accessible, professional-grade visual insights. Currently, I am expanding the application's capabilities, designing and implementing new user flows that allow users to effortlessly log and track their workouts.
                 </p>
+                <p className="mb-4 text-black">
+                  Alongside the user-facing application, I built an internal admin interface for managing user data pipelines, configuring health metric thresholds, and verifying the accuracy of physiological analytics — ensuring data integrity between backend calculations and the professional-grade insights delivered to end users.
+                </p>
               </div>
 
               <div className="mb-8">
