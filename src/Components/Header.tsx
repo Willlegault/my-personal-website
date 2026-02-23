@@ -26,9 +26,9 @@ const Header: React.FC = () => {
                 Projects
               </a>
               <div className="relative">
-                <button 
+                <button
                   onClick={() => setIsContactOpen(!isContactOpen)}
-                  className="text-slate-700 text-[0.95rem] font-bold transition-colors duration-200 relative hover:text-indigo-600 dark:text-slate-200 dark:hover:text-indigo-400 cursor-pointer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg bg-indigo-500 hover:bg-indigo-600 cursor-pointer"
                 >
                   Contact
                 </button>
