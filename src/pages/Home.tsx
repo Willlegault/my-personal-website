@@ -66,7 +66,7 @@ const Home: FC = () => {
 
             {/* Download resume */}
             <a
-              href="/resumes/William_Legault_Resume_SWE.pdf"
+              href="/resumes/William_Legault_Resume.pdf"
               download
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg bg-indigo-500 hover:bg-indigo-600 mt-6"
             >
