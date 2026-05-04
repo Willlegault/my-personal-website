@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "framer-motion": "^12.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/aos": "^3.0.7",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/react-sticky": "^6.0.6",
