@@ -35,7 +35,7 @@ const Sculpt: FC = () => {
                 <div>
                   <h3 className="text-xl font-bold text-black mb-3 border-b-2 border-[#cccccc] pb-2 inline-block">My Role</h3>
                   <p className="text-black">
-                    Frontend UI Developer focusing on building features, functionality, and seamless user experience flows.
+                    Founding Developer focusing on building features, functionality, and seamless user experience flows across a platform with 400+ active users.
                   </p>
                 </div>
                 <div>

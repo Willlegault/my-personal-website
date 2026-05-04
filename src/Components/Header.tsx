@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FiDownload } from 'react-icons/fi';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Header: React.FC = () => {
@@ -15,16 +16,14 @@ const Header: React.FC = () => {
                 William Legault
               </h1>
             </div>
-            <div className="hidden md:flex items-center gap-10">
+            <div className="hidden md:flex items-center gap-8">
               <a href="#about" className="text-slate-500 text-[0.95rem] font-medium transition-colors duration-200 relative hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50 after:content-[''] after:absolute after:w-0 after:h-[2px] after:-bottom-1 after:left-0 after:bg-indigo-500 after:transition-[width] after:duration-300 hover:after:w-full">
                 About
-              </a>
-              <a href="#skills" className="text-slate-500 text-[0.95rem] font-medium transition-colors duration-200 relative hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50 after:content-[''] after:absolute after:w-0 after:h-[2px] after:-bottom-1 after:left-0 after:bg-indigo-500 after:transition-[width] after:duration-300 hover:after:w-full">
-                Skills
               </a>
               <a href="#projects" className="text-slate-500 text-[0.95rem] font-medium transition-colors duration-200 relative hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50 after:content-[''] after:absolute after:w-0 after:h-[2px] after:-bottom-1 after:left-0 after:bg-indigo-500 after:transition-[width] after:duration-300 hover:after:w-full">
                 Projects
               </a>
+              <div className="flex items-center gap-3">
               <div className="relative">
                 <button
                   onClick={() => setIsContactOpen(!isContactOpen)}
@@ -75,6 +74,15 @@ const Header: React.FC = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
+              </div>
+              <a
+                href="/resumes/William_Legault_Resume.pdf"
+                download
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-semibold text-sm text-slate-700 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-slate-300 dark:text-slate-200 dark:border-slate-600 dark:bg-slate-800/60 dark:hover:border-slate-500"
+              >
+                <FiDownload className="text-base" />
+                Resume
+              </a>
               </div>
             </div>
           </div>
