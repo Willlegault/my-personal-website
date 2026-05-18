@@ -76,7 +76,7 @@ const Header: React.FC = () => {
                 </AnimatePresence>
               </div>
               <a
-                href="/resumes/William_Legault_Resume.pdf"
+                href="/resumes/Resume%20-%20Most%20Current-2.pdf"
                 download
                 className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-semibold text-sm text-slate-700 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-slate-300 dark:text-slate-200 dark:border-slate-600 dark:bg-slate-800/60 dark:hover:border-slate-500"
               >
