@@ -335,7 +335,7 @@ const Home: FC = () => {
     <footer className="w-full flex flex-col items-center justify-center py-10 bg-transparent">
       <div className="flex gap-8">
         <a
-          href="www.linkedin.com/in/william-legault-a1426b2a9"
+          href="https://www.linkedin.com/in/william-legault-a1426b2a9/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"

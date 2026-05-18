@@ -42,7 +42,7 @@ const Header: React.FC = () => {
                     >
                       <div className="p-2 grid gap-2">
                         <a 
-                          href="https://linkedin.com/in/william-legault" 
+                          href="https://www.linkedin.com/in/william-legault-a1426b2a9"
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors group dark:hover:bg-slate-700/50"
