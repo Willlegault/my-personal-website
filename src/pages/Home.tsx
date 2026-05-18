@@ -9,6 +9,8 @@ import HeroParticles from '../Components/HeroAnimation';
 // import { usePortfolioMode } from '../context/PortfolioModeContext'; // Preserved for filter feature
 import summitAppIcon from '../assets/summit-app-icon.png';
 import huskyBlackIcon from '../assets/husky_black.png';
+import sculptIcon from '../assets/icon.png';
+import headshotImg from '../assets/headshot.jpg';
 // sculptIcon unused — removed to avoid unused import warning
 
 // Preserved for biotech/SWE filter feature
@@ -125,6 +127,18 @@ const Home: FC = () => {
       <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">A fitness class scheduling and tracking platform built for Northeastern University students.</p>
       <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Lead Full-Stack Developer</p>
     </Link>,
+    <Link to="/sculpt" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="sculpt">
+      <div className="flex items-center mb-3">
+        <img src={sculptIcon} alt="Sculpt Icon" className="w-10 h-10 mr-4"/>
+        <div>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">Sculpt.ai <FiArrowRight className="text-indigo-400 text-xl" /></h3>
+          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Mobile / CMS / Analytics</span>
+        </div>
+      </div>
+      <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | TypeScript | Apollo | GraphQL</p>
+      <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">The adaptive health app. One app for training, nutrition, recovery, and wearable data. Sculpt synthesizes your inputs and builds the plan, so you don't have to.</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Software Developer</p>
+    </Link>,
     <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700" key="summit">
       <div className="flex items-center mb-3">
         <img src={summitAppIcon} alt="Summit App Icon" className="w-10 h-10 mr-4"/>
@@ -209,15 +223,20 @@ const Home: FC = () => {
         <div className="max-w-[1100px] mx-auto px-6">
           <div className="flex gap-16 items-start">
             {/* Sticky left panel */}
-            <div className="w-80 shrink-0 sticky top-24 self-start pt-20 pb-10">
-              <h2 className="text-5xl font-extrabold mb-8 tracking-tight text-slate-900 dark:text-slate-50">About Me</h2>
-              <p className="text-slate-600 leading-[1.7] text-lg dark:text-slate-400">
+            <div className="w-[28rem] shrink-0 sticky top-24 self-start pt-20 pb-10 flex flex-col items-center">
+              <h2 className="text-5xl font-extrabold mb-4 tracking-tight text-slate-900 dark:text-slate-50 self-start">About Me</h2>
+              <img
+                src={headshotImg}
+                alt="Headshot"
+                className="w-48 h-48 rounded-full object-cover mb-6 shadow-lg border-4 border-slate-200 dark:border-slate-700"
+              />
+              <p className="text-slate-600 leading-[1.7] text-lg dark:text-slate-400 max-w-[26rem] text-left">
                 I'm a Computer Science and Biology student at Northeastern University, passionate about bridging technology and life sciences. I specialize in full-stack development, mobile apps, and cloud architecture, focusing on scalable, user-centered solutions.
               </p>
             </div>
             {/* Scrollable right panel */}
             <div className="flex-1 py-40">
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 dark:bg-slate-800 dark:border-slate-700">
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 dark:bg-slate-800 dark:border-slate-700 max-w-xl mx-auto">
                 <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-50">Education</h3>
                 <p className="font-semibold text-lg text-slate-900 dark:text-slate-50">B.S. in Computer Science & Biology</p>
                 <p className="text-slate-600 mb-3 dark:text-slate-400">Northeastern University | May 2027</p>
