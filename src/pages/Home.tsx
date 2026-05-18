@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
 import Header from '../Components/Header';
+import HeroParticles from '../Components/HeroAnimation';
 // import { usePortfolioMode } from '../context/PortfolioModeContext'; // Preserved for filter feature
 import summitAppIcon from '../assets/summit-app-icon.png';
 import huskyBlackIcon from '../assets/husky_black.png';
-import sculptIcon from '../assets/icon.png';
+// sculptIcon unused — removed to avoid unused import warning
 
 // Preserved for biotech/SWE filter feature
 // const SWE_SKILLS = new Set(['Java', 'JavaScript', 'TypeScript', 'React', 'React Native', 'Kotlin', 'MongoDB', 'Firebase', 'Express', 'Supabase', 'AWS', 'Object-Oriented Design', 'Cloud Architecture']);
@@ -30,25 +31,69 @@ const Home: FC = () => {
   useEffect(() => {
     const container = document.getElementById('parallax-root');
     if (!container) return;
-    const onScroll = () => {
-      AOS.refresh();
-      const containerRect = container.getBoundingClientRect();
-      const containerMid = containerRect.top + containerRect.height / 2;
-      const tiles = document.querySelectorAll('[data-project-index]');
-      let closest = 0;
-      let minDist = Infinity;
-      tiles.forEach((tile) => {
-        const rect = tile.getBoundingClientRect();
-        const dist = Math.abs(rect.top + rect.height / 2 - containerMid);
-        if (dist < minDist) {
-          minDist = dist;
-          closest = Number((tile as HTMLElement).dataset.projectIndex);
+
+    // Use IntersectionObserver to determine which project tile is most visible
+    // within the scroll container. This is more reliable than midpoint math
+    // when tiles have varying heights or when scrolled to the very bottom.
+    const tiles = Array.from(container.querySelectorAll<HTMLElement>('[data-project-index]'));
+    if (tiles.length === 0) return;
+
+    const changeTimerRef = { current: null as number | null };
+    const lastSelectedRef = { current: 0 };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Prefer the last fully-visible tile inside the scroll container.
+        // Use the full `tiles` array (all observed elements) so we can
+        // determine if any are entirely within the container viewport.
+        const rootRect = container.getBoundingClientRect();
+        const fullyVisibleIndices = tiles
+          .filter((t) => {
+            const r = t.getBoundingClientRect();
+            return r.top >= rootRect.top - 1 && r.bottom <= rootRect.bottom + 1;
+          })
+          .map((t) => Number((t as HTMLElement).dataset.projectIndex));
+
+        if (fullyVisibleIndices.length > 0) {
+          const lastFully = Math.max(...fullyVisibleIndices);
+          lastSelectedRef.current = lastFully;
+          setActiveProject(lastFully);
+          return;
         }
-      });
-      setActiveProject(closest);
-    };
-    container.addEventListener('scroll', onScroll, { passive: true });
-    return () => container.removeEventListener('scroll', onScroll);
+
+        // If none are fully visible, fall back to largest-intersection logic
+        // with the same dominance + debounce rules used previously.
+        let bestIndex = 0;
+        let bestRatio = 0;
+        entries.forEach((entry) => {
+          const idx = Number((entry.target as HTMLElement).dataset.projectIndex);
+          if (entry.intersectionRatio > bestRatio) {
+            bestRatio = entry.intersectionRatio;
+            bestIndex = idx;
+          }
+        });
+
+        if (bestRatio >= 0.75) {
+          lastSelectedRef.current = bestIndex;
+          setActiveProject(bestIndex);
+          return;
+        }
+
+        if (bestIndex !== lastSelectedRef.current) {
+          if (changeTimerRef.current) window.clearTimeout(changeTimerRef.current);
+          changeTimerRef.current = window.setTimeout(() => {
+            lastSelectedRef.current = bestIndex;
+            setActiveProject(bestIndex);
+            changeTimerRef.current = null;
+          }, 120);
+        }
+      },
+      { root: container, threshold: Array.from({ length: 21 }, (_, i) => i / 20) }
+    );
+
+    tiles.forEach((t) => observer.observe(t));
+    AOS.refresh();
+    return () => observer.disconnect();
   }, []);
 
   const scrollToProject = (index: number) => {
@@ -68,7 +113,7 @@ const Home: FC = () => {
 
 
   const projectTiles = [
-    <Link to="/active-husky" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer">
+    <Link to="/active-husky" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="active-husky">
       <div className="flex items-center mb-3">
         <img src={huskyBlackIcon} alt="Northeastern Husky Icon" className="w-10 h-10 mr-4"/>
         <div>
@@ -77,26 +122,10 @@ const Home: FC = () => {
         </div>
       </div>
       <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | AWS | Vercel | Node.js</p>
-      <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">
-        A fitness class scheduling and tracking platform built for Northeastern University students, supporting 6,000+ active users across iOS and Android.
-      </p>
-      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Lead Full-Stack Developer — mobile app and admin CMS, end-to-end.</p>
+      <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">A fitness class scheduling and tracking platform built for Northeastern University students.</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Lead Full-Stack Developer</p>
     </Link>,
-    <Link to="/sculpt" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 cursor-pointer dark:bg-slate-800 dark:border-slate-700">
-      <div className="flex items-center mb-3">
-        <img src={sculptIcon} alt="Sculpt.ai App Icon" className="w-10 h-10 mr-4"/>
-        <div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">Sculpt.ai <FiArrowRight className="text-indigo-400 text-xl" /></h3>
-          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Founding Developer</span>
-        </div>
-      </div>
-      <p className="text-sm text-indigo-500 font-semibold mb-3">React | REST APIs | Shadcn UI</p>
-      <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">
-        A fitness and dietary analytics platform for paid users, translating complex health data into professional-grade visual insights.
-      </p>
-      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Founding Developer — user-facing app, internal admin interface, and health analytics visualization. 400+ active users.</p>
-    </Link>,
-    <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700">
+    <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700" key="summit">
       <div className="flex items-center mb-3">
         <img src={summitAppIcon} alt="Summit App Icon" className="w-10 h-10 mr-4"/>
         <div>
@@ -105,41 +134,32 @@ const Home: FC = () => {
         </div>
       </div>
       <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | MongoDB | JavaScript | Node.js</p>
-      <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
-        A demo app featuring an AI chatbot, user onboarding, and a MongoDB-backed API for data storage, showcasing rapid prototyping and development.
-      </p>
+      <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">A demo app featuring an AI chatbot and a MongoDB-backed API for data storage.</p>
     </div>,
-    <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700">
+    <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700" key="sophia">
       <div className="mb-3">
         <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Sophia: Philosophical Journal</h3>
         <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Hackathon</span>
       </div>
       <p className="text-sm text-indigo-500 font-semibold mb-3">React.js | Supabase | Node.js & Express.js</p>
-      <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
-        A mental health journaling app with secure authentication, CRUD operations for entries, and progress tracking via a calendar view.
-      </p>
+      <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">A mental health journaling app with secure authentication and progress tracking.</p>
     </div>,
-    <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700">
+    <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700" key="cloud">
       <div className="mb-3">
         <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Cloud Web Application</h3>
         <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Personal</span>
       </div>
       <p className="text-sm text-indigo-500 font-semibold mb-3">AWS | SQL | Shell</p>
-      <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">
-        A scalable web app on AWS using EC2, S3, and RDS, focusing on cloud architecture, performance, and cost-effective resource management.
-      </p>
+      <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">A scalable web app on AWS using EC2, S3, and RDS.</p>
     </div>,
-    <a
-      href="https://github.com/Willlegault"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-center items-center h-full text-center hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700"
-    >
+    <a href="https://github.com/Willlegault" target="_blank" rel="noopener noreferrer" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-center items-center h-full text-center hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700" key="github">
       <FaGithub className="text-5xl mb-4 text-slate-800 dark:text-slate-200" />
       <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Explore My Projects</h3>
       <p className="text-slate-600 mt-2 dark:text-slate-400">View my repositories and contributions on GitHub.</p>
     </a>,
   ];
+
+  // projectTiles rendered below; AOS will animate them inside the custom scroll container
 
   return (
     <>
@@ -147,38 +167,40 @@ const Home: FC = () => {
       <div id="parallax-root" className="parallax-root">
 
       {/* Hero Section */}
-      <section className="hero-section hero-parallax min-h-[80vh] flex items-center justify-center pt-20 relative bg-slate-50 dark:bg-slate-900">
+      <section className="hero-section hero-parallax h-[calc(100vh-5rem)] flex items-center justify-center pt-20 relative overflow-hidden bg-slate-50 dark:bg-slate-900">
         {/* Drifting blobs with CSS parallax */}
-        <div className="blob-1 absolute -top-40 -left-40 w-[550px] h-[550px] bg-indigo-300/25 dark:bg-indigo-500/15 blur-3xl" />
-        <div className="blob-2 absolute -top-20 -right-40 w-[450px] h-[450px] bg-emerald-300/20 dark:bg-emerald-500/10 blur-3xl" />
-        <div className="blob-3 absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-300/20 dark:bg-violet-500/10 blur-3xl" />
+        {/* <div className="blob-1 absolute -top-40 -left-40 w-[550px] h-[550px] bg-indigo-300/25 dark:bg-indigo-500/15 blur-3xl" /> */}
+        {/* <div className="blob-2 absolute -top-20 -right-40 w-[450px] h-[450px] bg-emerald-300/20 dark:bg-emerald-500/10 blur-3xl" /> */}
+        {/* <div className="blob-3 absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-300/20 dark:bg-violet-500/10 blur-3xl" /> */}
         <div className="hero-noise" />
+        <HeroParticles />
 
-        <div className="max-w-[1100px] mx-auto relative z-10 px-6 text-center">
-          <div>
-            <h1 className="text-6xl md:text-7xl leading-tight font-extrabold mb-6 pb-2 tracking-tight bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 bg-clip-text text-transparent dark:from-slate-50 dark:to-indigo-300">
-              William D. Legault
-            </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed dark:text-slate-400">
-              Computer Science & Biology Student | Full-Stack Developer
-            </p>
-            <p className="text-base text-slate-600 mt-4 font-medium dark:text-slate-400">
-              Available: April - December 2026 | Boston, MA
-            </p>
+        <div className="max-w-[1100px] mx-auto w-full relative z-10 px-6 md:px-10 lg:px-16">
+          <div className="flex flex-col items-center justify-center h-full max-w-4xl mx-auto pt-12 pb-28 md:pt-16 md:pb-32 text-center">
+            <div className="w-full">
+              <h1 className="text-[clamp(2.05rem,6vw,4.5rem)] leading-none font-extrabold mb-6 pb-2 tracking-tight whitespace-nowrap bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 bg-clip-text text-transparent dark:from-slate-50 dark:to-indigo-300">
+                William D. Legault
+              </h1>
+              <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-5 leading-relaxed dark:text-slate-400">
+                Computer Science & Biology Student | Full-Stack Developer
+              </p>
+              <p className="text-base text-slate-600 mt-3 font-medium dark:text-slate-400">
+                Available: April - December 2026 | Boston, MA
+              </p>
+            </div>
 
+            {/* scroll button moved to absolute bottom of hero to avoid affecting layout */}
           </div>
-        </div>
-
-        {/* Scroll cue */}
-        <div className="absolute bottom-8 inset-x-0 flex justify-center animate-bounce">
-          <button
-            tabIndex={-1}
-            onClick={handleScrollClick}
-            className={`btn-ghost flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer${scrollActivated ? ' scroll-activate' : ''}`}
-          >
-            <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
-            <FiChevronDown className="text-lg" />
-          </button>
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-50">
+            <button
+              tabIndex={-1}
+              onClick={handleScrollClick}
+              className={`btn-ghost flex flex-col items-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors cursor-pointer${scrollActivated ? ' scroll-activate' : ''}`}
+            >
+              <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
+              <FiChevronDown className="text-lg" />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -280,7 +302,7 @@ const Home: FC = () => {
             {/* Scrollable right tiles */}
             <div className="flex-1 py-8 flex flex-col gap-6">
               {projectTiles.map((tile, index) => (
-                <div key={index} data-project-index={index} data-aos="fade-up">
+                <div key={index} data-project-index={index} data-aos="fade-up" className="rounded-md">
                   {tile}
                 </div>
               ))}

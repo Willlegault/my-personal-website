@@ -21,6 +21,27 @@ function AOSManager() {
     AOS.refresh();
   }, [location.pathname]);
 
+  useEffect(() => {
+    // Ensure AOS updates when the app's custom scroll container scrolls
+    const container = document.getElementById('parallax-root');
+    if (!container) return;
+
+    let raf = 0 as number | null;
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        AOS.refresh();
+        if (raf) {
+          window.cancelAnimationFrame(raf);
+          raf = 0;
+        }
+      });
+    };
+
+    container.addEventListener('scroll', onScroll, { passive: true });
+    return () => container.removeEventListener('scroll', onScroll);
+  }, []);
+
   return null;
 }
 
