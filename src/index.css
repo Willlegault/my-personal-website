@@ -98,6 +98,15 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.sculpt-carousel-tile:hover {
+  background-color: #fff;
+  transform: scale(0.985);
+}
+
+.sculpt-carousel-tile:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
 .btn-ghost {
   background: none;
   border: none;
