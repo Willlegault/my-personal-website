@@ -10,7 +10,6 @@ import HeroParticles from '../Components/HeroAnimation';
 import summitAppIcon from '../assets/summit-app-icon.png';
 import huskyBlackIcon from '../assets/husky_black.png';
 import sculptIcon from '../assets/icon.png';
-import headshotImg from '../assets/headshot.jpg';
 // sculptIcon unused — removed to avoid unused import warning
 
 // Preserved for biotech/SWE filter feature
@@ -109,7 +108,7 @@ const Home: FC = () => {
 
   const handleScrollClick = () => {
     setScrollActivated(true);
-    setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }), 300);
+    setTimeout(() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }), 300);
     setTimeout(() => setScrollActivated(false), 900);
   };
 
@@ -214,37 +213,6 @@ const Home: FC = () => {
               <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
               <FiChevronDown className="text-lg" />
             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="scroll-mt-24 bg-slate-50 dark:bg-slate-900">
-        <div className="max-w-[1100px] mx-auto px-6">
-          <div className="flex gap-16 items-start">
-            {/* Sticky left panel */}
-            <div className="w-[28rem] shrink-0 sticky top-24 self-start pt-20 pb-10 flex flex-col items-center">
-              <img
-                src={headshotImg}
-                alt="Headshot"
-                className="w-48 h-48 rounded-full object-cover mb-10 shadow-lg border-4 border-slate-200 dark:border-slate-700"
-              />
-              <p className="text-slate-600 leading-[1.7] text-lg dark:text-slate-400 max-w-[26rem] text-left">
-                I'm a Computer Science and Biology student at Northeastern University, passionate about bridging technology and life sciences. I specialize in full-stack development, mobile apps, and cloud architecture, focusing on scalable, user-centered solutions.
-              </p>
-            </div>
-            {/* Scrollable right panel */}
-            <div className="flex-1 py-40">
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 dark:bg-slate-800 dark:border-slate-700 max-w-xl mx-auto">
-                <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-50">Education</h3>
-                <p className="font-semibold text-lg text-slate-900 dark:text-slate-50">B.S. in Computer Science & Biology</p>
-                <p className="text-slate-600 mb-3 dark:text-slate-400">Northeastern University | May 2027</p>
-                <h4 className="font-semibold text-md text-slate-800 dark:text-slate-300">Key Coursework:</h4>
-                <p className="text-slate-600 text-sm mt-1 dark:text-slate-400">
-                  Database Design, Cloud Computing, Algorithms & Data Structures, Cybersecurity, Genetics and Molecular Biology
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

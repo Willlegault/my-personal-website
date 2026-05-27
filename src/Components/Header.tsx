@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { FiDownload } from 'react-icons/fi';
 import { AnimatePresence, motion } from 'framer-motion';
+import headshotImg from '../assets/headshot_small.jpg';
 
 const Header: React.FC = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isAboutOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsAboutOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [isAboutOpen]);
 
   return (
     <>
@@ -12,14 +25,11 @@ const Header: React.FC = () => {
         <nav className="max-w-[1200px] mx-auto px-6">
           <div className="flex items-center justify-between h-[4.5rem]">
             <div className="flex-shrink-0 flex items-center">
-              <h1 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 bg-clip-text text-transparent m-0 cursor-pointer pb-1 dark:from-slate-50 dark:to-indigo-300" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <h1 className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-600 bg-clip-text text-transparent m-0 cursor-pointer pb-1 dark:from-slate-50 dark:to-indigo-300" onClick={() => setIsAboutOpen(true)}>
                 William Legault
               </h1>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#about" className="text-slate-500 text-[0.95rem] font-medium transition-colors duration-200 relative hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50 after:content-[''] after:absolute after:w-0 after:h-[2px] after:-bottom-1 after:left-0 after:bg-indigo-500 after:transition-[width] after:duration-300 hover:after:w-full">
-                About
-              </a>
               <a href="#projects" className="text-slate-500 text-[0.95rem] font-medium transition-colors duration-200 relative hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50 after:content-[''] after:absolute after:w-0 after:h-[2px] after:-bottom-1 after:left-0 after:bg-indigo-500 after:transition-[width] after:duration-300 hover:after:w-full">
                 Projects
               </a>
@@ -41,9 +51,9 @@ const Header: React.FC = () => {
                       className="absolute top-full right-0 mt-4 w-64 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden dark:bg-slate-800 dark:border-slate-700"
                     >
                       <div className="p-2 grid gap-2">
-                        <a 
+                        <a
                           href="https://www.linkedin.com/in/william-legault-a1426b2a9"
-                          target="_blank" 
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors group dark:hover:bg-slate-700/50"
                           onClick={() => setIsContactOpen(false)}
@@ -56,8 +66,8 @@ const Header: React.FC = () => {
                             <p className="text-xs text-slate-500 dark:text-slate-400">Connect professionally</p>
                           </div>
                         </a>
-                        
-                        <a 
+
+                        <a
                           href="mailto:Willlegault24@gmail.com"
                           className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors group dark:hover:bg-slate-700/50"
                           onClick={() => setIsContactOpen(false)}
@@ -88,6 +98,62 @@ const Header: React.FC = () => {
           </div>
         </nav>
       </header>
+
+      <AnimatePresence>
+        {isAboutOpen && (
+          <motion.div
+            className="fixed inset-0 z-[1100] pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label="About William Legault"
+              className="pointer-events-auto absolute top-[5rem] left-4 sm:left-6 md:left-[calc(max(1.5rem,(100vw-1200px)/2+1.5rem))] w-[min(22rem,calc(100vw-2rem))] max-h-[80vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-slate-200 dark:bg-slate-900 dark:border-slate-700"
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+            >
+              <button
+                onClick={() => setIsAboutOpen(false)}
+                aria-label="Close"
+                className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-slate-50 transition-colors shadow-sm"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                </svg>
+              </button>
+              <div className="p-6 flex flex-col">
+                <div className="flex items-center gap-4 mb-4">
+                  <img
+                    src={headshotImg}
+                    alt="Headshot"
+                    className="w-16 h-16 rounded-full object-cover shadow-md border-2 border-slate-200 dark:border-slate-700 shrink-0"
+                  />
+                  <h2 className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-50">About Me</h2>
+                </div>
+                <p className="text-slate-600 leading-[1.6] text-sm dark:text-slate-400 mb-5">
+                  I'm a Computer Science and Biology student at Northeastern University, passionate about bridging technology and life sciences. I specialize in full-stack development, mobile apps, and cloud architecture, focusing on scalable, user-centered solutions.
+                </p>
+                <div className="w-full bg-slate-50 p-4 rounded-xl border border-slate-200 dark:bg-slate-800 dark:border-slate-700 text-left">
+                  <h3 className="text-base font-bold mb-2 text-slate-900 dark:text-slate-50">Education</h3>
+                  <p className="font-semibold text-sm text-slate-900 dark:text-slate-50">B.S. in Computer Science & Biology</p>
+                  <p className="text-slate-600 text-sm mb-2 dark:text-slate-400">Northeastern University | May 2027</p>
+                  <h4 className="font-semibold text-xs text-slate-800 dark:text-slate-300">Key Coursework:</h4>
+                  <p className="text-slate-600 text-xs mt-1 dark:text-slate-400">
+                    Database Design, Cloud Computing, Algorithms & Data Structures, Cybersecurity, Genetics and Molecular Biology
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
