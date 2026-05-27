@@ -199,7 +199,7 @@ const Home: FC = () => {
                 Computer Science & Biology Student | Full-Stack Developer
               </p>
               <p className="text-base text-slate-600 mt-3 font-medium dark:text-slate-400">
-                Available: April - December 2026 | Boston, MA
+                Available: June - December 2026 | Boston, MA
               </p>
             </div>
 
