@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { FaExternalLinkAlt, FaArrowLeft, FaChevronLeft, FaChevronRight, FaImages } from 'react-icons/fa';
 import sculptIcon from '../assets/icon.png';
 
-const appScreenshot1 = new URL('../assets/IMG_2014.PNG', import.meta.url).href;
+const appScreenshot1 = new URL('../assets/IMG_2043.jpg', import.meta.url).href;
 const appScreenshot2 = new URL('../assets/IMG_2032.PNG', import.meta.url).href;
 const appScreenshot3 = new URL('../assets/IMG_2035.PNG', import.meta.url).href;
 const appScreenshot4 = new URL('../assets/IMG_2036.PNG', import.meta.url).href;
@@ -130,11 +130,6 @@ const Sculpt: FC = () => {
                     <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-[#fff0e8] px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#b84a10]">
                       <FaImages className="text-[11px]" /> Visual highlights
                     </div>
-                    <h2 className="text-2xl font-bold text-black">A quick look at the product</h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-black/70">
-                      A carousel works well here because it adds visual proof after the story is told, which keeps the page
-                      scannable without interrupting the flow of the written sections.
-                    </p>
                   </div>
                   <div className="text-sm font-medium text-black/55">
                     {String(activeSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}

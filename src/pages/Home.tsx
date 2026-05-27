@@ -299,7 +299,7 @@ const Home: FC = () => {
             {/* Sticky left panel */}
             <div className="w-64 shrink-0 sticky top-24 self-start pt-20 pb-10 flex flex-col">
               <h2 className="text-5xl font-extrabold mb-3 tracking-tight text-slate-900 dark:text-slate-50">Projects</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mb-10">Select a project to explore it in detail.</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mb-10">Please select a project card for an overview I have made of my work. </p>
               <nav className="flex flex-col gap-1">
                 {projectNames.map((name, i) => (
                   <button
