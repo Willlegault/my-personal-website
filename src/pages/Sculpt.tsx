@@ -4,9 +4,9 @@ import { FaExternalLinkAlt, FaArrowLeft, FaChevronLeft, FaChevronRight, FaImages
 import sculptIcon from '../assets/icon.png';
 
 const appScreenshot1 = new URL('../assets/IMG_2043.jpg', import.meta.url).href;
-const appScreenshot2 = new URL('../assets/IMG_2032.PNG', import.meta.url).href;
-const appScreenshot3 = new URL('../assets/IMG_2035.PNG', import.meta.url).href;
-const appScreenshot4 = new URL('../assets/IMG_2036.PNG', import.meta.url).href;
+const appScreenshot4 = new URL('../assets/IMG_2032.PNG', import.meta.url).href;
+const appScreenshot2 = new URL('../assets/IMG_2035.PNG', import.meta.url).href;
+const appScreenshot3 = new URL('../assets/IMG_2036.PNG', import.meta.url).href;
 const adminScreenshot = new URL('../assets/Screenshot 2026-05-26 at 2.16.36 PM.png', import.meta.url).href;
 
 const Sculpt: FC = () => {
