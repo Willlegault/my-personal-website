@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Dot.Nite">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#171A33"/>
+      <stop offset="55%" stop-color="#12142B"/>
+      <stop offset="100%" stop-color="#0A0B1A"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="50%" cy="42%" r="58%">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="13" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="url(#bloom)"/>
+
+  <!-- Wordmark: Orbitron 900 outlines, white over an indigo halo, mirroring
+       the login screen's text-shadow treatment. -->
+  <g transform="translate(82.26 356.16) scale(0.27821 -0.27821)">
+    <g filter="url(#glow)" fill="#6366F1" opacity="0.85">
+      <path d="M58 0V720H629Q670 720 703.5 700.0Q737 680 757.5 646.5Q778 613 778 572V148Q778 108 757.5 74.0Q737 40 703.5 20.0Q670 0 629 0ZM212 156H621Q621 156 621.0 156.0Q621 156 621 156V564Q621 564 621.0 564.0Q621 564 621 564H212Q212 564 212.0 564.0Q212 564 212 564V156Q212 156 212.0 156.0Q212 156 212 156Z"/>
+      <g transform="translate(934.0 0)"><path d="M54 0V153H207V0Z"/></g>
+    </g>
+    <g fill="#FFFFFF">
+      <path d="M58 0V720H629Q670 720 703.5 700.0Q737 680 757.5 646.5Q778 613 778 572V148Q778 108 757.5 74.0Q737 40 703.5 20.0Q670 0 629 0ZM212 156H621Q621 156 621.0 156.0Q621 156 621 156V564Q621 564 621.0 564.0Q621 564 621 564H212Q212 564 212.0 564.0Q212 564 212 564V156Q212 156 212.0 156.0Q212 156 212 156Z"/>
+      <g transform="translate(934.0 0)"><path d="M54 0V153H207V0Z"/></g>
+    </g>
+  </g>
+
+  <rect x="1.5" y="1.5" width="509" height="509" rx="110.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="3"/>
+</svg>
