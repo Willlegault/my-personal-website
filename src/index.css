@@ -279,3 +279,21 @@ button:focus-visible {
     opacity: 0.3;
   }
 }
+/* Collapsible deep-dive sections on project case-study pages. The default
+   disclosure triangle is replaced by a chevron that rotates when open. */
+.deep-dive > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.deep-dive > summary::-webkit-details-marker {
+  display: none;
+}
+
+.deep-dive > summary .deep-dive-chevron {
+  transition: transform 0.2s ease;
+}
+
+.deep-dive[open] > summary .deep-dive-chevron {
+  transform: rotate(90deg);
+}
