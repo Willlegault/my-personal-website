@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Home from './pages/Home';
 import ActiveHusky from './pages/ActiveHusky';
 import Sculpt from './pages/Sculpt';
+import DotNite from './pages/DotNite';
 import ScrollToTop from './Components/ScrollToTop';
 import { PortfolioModeProvider } from './context/PortfolioModeContext';
 import './App.css';
@@ -56,6 +57,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/active-husky" element={<ActiveHusky />} />
             <Route path="/sculpt" element={<Sculpt />} />
+            <Route path="/dotnite" element={<DotNite />} />
           </Routes>
         </div>
       </Router>
