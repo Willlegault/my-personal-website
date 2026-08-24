@@ -36,14 +36,27 @@ type Props = {
   slides: CarouselSlide[];
   theme: Theme;
   eyebrow?: string;
+  /**
+   * Shape of the device frame around each screenshot. Defaults to `portrait`
+   * (a phone) since the first consumer was a mobile app; `landscape` uses a
+   * 16:10 frame so desktop-width captures aren't letterboxed into a sliver.
+   */
+  orientation?: 'portrait' | 'landscape';
 };
 
-const ScreenshotCarousel: FC<Props> = ({ slides, theme, eyebrow = 'Visual highlights' }) => {
+const ScreenshotCarousel: FC<Props> = ({ slides, theme, eyebrow = 'Visual highlights', orientation = 'portrait' }) => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   if (slides.length === 0) return null;
 
   const currentSlide = slides[activeSlide];
+  const isLandscape = orientation === 'landscape';
+  // Portrait keeps the original phone proportions; landscape widens the row and
+  // swaps the fixed height for a 16:10 aspect box.
+  const rowClass = isLandscape ? 'max-w-none' : 'max-w-[430px]';
+  const frameClass = isLandscape
+    ? 'aspect-[16/10] w-full rounded-xl'
+    : 'h-[620px] w-full max-w-[340px] rounded-[2rem]';
 
   return (
     <section
@@ -64,13 +77,24 @@ const ScreenshotCarousel: FC<Props> = ({ slides, theme, eyebrow = 'Visual highli
         </div>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
+      <div className={`grid gap-5 ${isLandscape ? '' : 'lg:grid-cols-[1.25fr_0.75fr]'}`}>
         <div className="relative overflow-hidden rounded-3xl bg-[#111111] p-4 md:p-5">
           <div className="mb-4 flex items-center justify-between text-white/80">
             <span className="text-sm font-medium">{currentSlide.title}</span>
-            <span className="rounded-full border border-white/10 px-3 py-1 text-xs">{currentSlide.note}</span>
+            {/* An authorship note ("My work") is tinted with the page accent so
+                it reads as a credit rather than a neutral category label. */}
+            <span
+              className="rounded-full border px-3 py-1 text-xs font-medium"
+              style={
+                currentSlide.note.toLowerCase().includes('my work')
+                  ? { borderColor: theme.accent, color: '#fff', backgroundColor: `${theme.accent}33` }
+                  : { borderColor: 'rgba(255,255,255,0.1)' }
+              }
+            >
+              {currentSlide.note}
+            </span>
           </div>
-          <div className="mx-auto flex w-full max-w-[430px] items-center justify-center gap-3">
+          <div className={`mx-auto flex w-full ${rowClass} items-center justify-center gap-3`}>
             <button
               type="button"
               aria-label="Previous slide"
@@ -79,7 +103,7 @@ const ScreenshotCarousel: FC<Props> = ({ slides, theme, eyebrow = 'Visual highli
             >
               <FaChevronLeft className="text-sm" />
             </button>
-            <div className="h-[620px] w-full max-w-[340px] overflow-hidden rounded-[2rem] border border-white/10 bg-black">
+            <div className={`${frameClass} overflow-hidden border border-white/10 bg-black`}>
               <img
                 src={currentSlide.image}
                 alt={currentSlide.imageAlt}
@@ -95,6 +119,13 @@ const ScreenshotCarousel: FC<Props> = ({ slides, theme, eyebrow = 'Visual highli
               <FaChevronRight className="text-sm" />
             </button>
           </div>
+          {/* Landscape shows only the active slide's caption, inside the frame;
+              portrait keeps the full tile list in the side column below. */}
+          {isLandscape && (
+            <div className="mx-auto mt-4 max-w-3xl rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+              <p className="text-center text-sm leading-6 text-white/70">{currentSlide.caption}</p>
+            </div>
+          )}
           <div className="mt-4 flex items-center justify-center gap-2">
             {slides.map((slide, index) => (
               <button
@@ -108,34 +139,36 @@ const ScreenshotCarousel: FC<Props> = ({ slides, theme, eyebrow = 'Visual highli
           </div>
         </div>
 
-        <div
-          className="space-y-4 rounded-3xl border p-5"
-          style={{ backgroundColor: theme.panelBg, borderColor: theme.panelBorder }}
-        >
-          <div className="space-y-2">
-            {slides.map((slide, index) => {
-              const isActive = index === activeSlide;
-              return (
-                <button
-                  key={slide.title}
-                  type="button"
-                  onClick={() => setActiveSlide(index)}
-                  className="sculpt-carousel-tile w-full rounded-2xl border px-4 py-3 text-left transition"
-                  style={{
-                    borderColor: isActive ? theme.accent : theme.tileBorder,
-                    backgroundColor: isActive ? theme.tileActiveBg : theme.panelBg,
-                  }}
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-semibold" style={{ color: theme.text }}>{slide.title}</span>
-                    <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: slide.accent }} />
-                  </div>
-                  <p className="mt-1 text-sm leading-5" style={{ color: theme.textMuted }}>{slide.caption}</p>
-                </button>
-              );
-            })}
+        {!isLandscape && (
+          <div
+            className="space-y-4 rounded-3xl border p-5"
+            style={{ backgroundColor: theme.panelBg, borderColor: theme.panelBorder }}
+          >
+            <div className="space-y-2">
+              {slides.map((slide, index) => {
+                const isActive = index === activeSlide;
+                return (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    onClick={() => setActiveSlide(index)}
+                    className="sculpt-carousel-tile w-full rounded-2xl border px-4 py-3 text-left transition"
+                    style={{
+                      borderColor: isActive ? theme.accent : theme.tileBorder,
+                      backgroundColor: isActive ? theme.tileActiveBg : theme.panelBg,
+                    }}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="font-semibold" style={{ color: theme.text }}>{slide.title}</span>
+                      <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: slide.accent }} />
+                    </div>
+                    <p className="mt-1 text-sm leading-5" style={{ color: theme.textMuted }}>{slide.caption}</p>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
