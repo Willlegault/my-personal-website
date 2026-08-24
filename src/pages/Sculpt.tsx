@@ -244,9 +244,9 @@ const Sculpt: FC = () => {
                 </h3>
                 <p className="mb-6" style={{ color: TEXT_SECONDARY }}>
                   I designed and built the coach mascot — an animated orb that gives Sculpt’s AI coach a physical presence.
-                  It shifts between four coaching states and tracks the user’s gaze, so the assistant reads as attentive
-                  rather than static. Everything is CSS keyframes and layered gradients with no animation library, keeping
-                  it light enough to run anywhere in the app.
+                  It currently has four states, and its gaze directs the user’s attention toward key actions on screen,
+                  so the assistant guides rather than just sits there. Everything is CSS keyframes and layered gradients
+                  with no animation library, keeping it light enough to run anywhere in the app.
                 </p>
 
                 <div className="rounded-2xl border p-4" style={{ backgroundColor: '#FFFFFF', borderColor: BORDER_SUBTLE }}>
@@ -254,7 +254,7 @@ const Sculpt: FC = () => {
                 </div>
 
                 <p className="mt-4 text-sm" style={{ color: TEXT_MUTED }}>
-                  Interactive — switch states or pick a gaze direction to see the transitions.
+                  Interactive — switch states or point its gaze to see the transitions.
                 </p>
               </section>
             </div>
