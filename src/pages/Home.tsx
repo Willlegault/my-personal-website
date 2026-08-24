@@ -10,6 +10,7 @@ import HeroParticles from '../Components/HeroAnimation';
 import summitAppIcon from '../assets/summit-app-icon.png';
 import huskyBlackIcon from '../assets/husky_black.png';
 import sculptIcon from '../assets/icon.png';
+import dotniteIcon from '../assets/dotnite-icon.svg';
 // sculptIcon unused — removed to avoid unused import warning
 
 // Preserved for biotech/SWE filter feature
@@ -27,7 +28,7 @@ const Home: FC = () => {
   const [scrollActivated, setScrollActivated] = useState(false);
   const [activeProject, setActiveProject] = useState(0);
 
-  const projectNames = ['Active Husky', 'Sculpt.ai', 'Summit: Debt Relief', 'Sophia: Philosophical Journal', 'Cloud Web App', 'Explore on GitHub'];
+  const projectNames = ['Active Husky', 'Sculpt.ai', 'Dot.Nite', 'Summit: Debt Relief', 'Sophia: Philosophical Journal', 'Explore on GitHub'];
 
   useEffect(() => {
     const container = document.getElementById('parallax-root');
@@ -138,6 +139,18 @@ const Home: FC = () => {
       <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">The adaptive health app. One app for training, nutrition, recovery, and wearable data. Sculpt synthesizes your inputs and builds the plan, so you don't have to.</p>
       <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Software Developer</p>
     </Link>,
+    <Link to="/dotnite" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="dotnite">
+      <div className="flex items-center mb-3">
+        <img src={dotniteIcon} alt="Dot.Nite Icon" className="w-10 h-10 mr-4"/>
+        <div>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">Dot.Nite <FiArrowRight className="text-indigo-400 text-xl" /></h3>
+          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Team Project</span>
+        </div>
+      </div>
+      <p className="text-sm text-indigo-500 font-semibold mb-3">TypeScript | React | Socket.IO | Express</p>
+      <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">Real-time multiplayer Dots and Boxes with move-by-move replay analysis, a ranked ladder, and an unlockable-theme economy.</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Replay, Stats &amp; Theming Systems</p>
+    </Link>,
     <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700" key="summit">
       <div className="flex items-center mb-3">
         <img src={summitAppIcon} alt="Summit App Icon" className="w-10 h-10 mr-4"/>
@@ -156,14 +169,6 @@ const Home: FC = () => {
       </div>
       <p className="text-sm text-indigo-500 font-semibold mb-3">React.js | Supabase | Node.js & Express.js</p>
       <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">A mental health journaling app with secure authentication and progress tracking.</p>
-    </div>,
-    <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full dark:bg-slate-800 dark:border-slate-700" key="cloud">
-      <div className="mb-3">
-        <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Cloud Web Application</h3>
-        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Personal</span>
-      </div>
-      <p className="text-sm text-indigo-500 font-semibold mb-3">AWS | SQL | Shell</p>
-      <p className="text-slate-600 mb-6 leading-[1.7] dark:text-slate-400">A scalable web app on AWS using EC2, S3, and RDS.</p>
     </div>,
     <a href="https://github.com/Willlegault" target="_blank" rel="noopener noreferrer" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-center items-center h-full text-center hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700" key="github">
       <FaGithub className="text-5xl mb-4 text-slate-800 dark:text-slate-200" />
