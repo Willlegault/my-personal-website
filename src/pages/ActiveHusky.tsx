@@ -83,16 +83,21 @@ const ActiveHusky: FC = () => {
                 href="https://recreation.northeastern.edu/program-registration/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-shrink-0 items-center gap-2 rounded-xl px-6 py-4 text-[15px] font-semibold transition-all"
+                className="group inline-flex flex-shrink-0 items-center gap-2 rounded-full px-6 py-3 text-[14px] font-semibold tracking-[-0.005em] text-white transition-all duration-200 hover:-translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                 style={{
                   backgroundColor: hover ? '#A50D26' : PRIMARY,
+                  // Pinned: the site-wide `a:hover` rule would otherwise tint
+                  // this indigo on hover.
                   color: '#fff',
-                  boxShadow: hover ? '0 4px 16px rgba(200,16,46,0.35)' : '0 2px 8px rgba(200,16,46,0.22)',
+                  boxShadow: hover
+                    ? '0 2px 4px rgba(0,0,0,0.18), 0 12px 36px rgba(200,16,46,0.42)'
+                    : '0 1px 2px rgba(0,0,0,0.15), 0 8px 28px rgba(200,16,46,0.32)',
                 }}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
               >
-                Visit Website <FaExternalLinkAlt className="text-sm" />
+                Visit Website
+                <FaExternalLinkAlt className="text-[11px] transition-transform duration-200 group-hover:translate-x-0.5" />
               </a>
             </div>
           </div>
