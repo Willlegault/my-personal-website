@@ -1,0 +1,217 @@
+/* ── keyframes ── */
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50%       { transform: scale(1.035) translateY(-4px); }
+}
+@keyframes faceDrift {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+@keyframes haloPulse {
+  0%, 100% { opacity: .8;  transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.07); }
+}
+@keyframes morphA {
+  0%, 100% { border-radius: 48% 52% 46% 54% / 52% 48% 52% 48%; }
+  33%      { border-radius: 55% 45% 52% 48% / 46% 55% 45% 54%; }
+  66%      { border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%; }
+}
+@keyframes blink {
+  0%, 93%, 100% { transform: scaleY(1); }
+  96%           { transform: scaleY(.1); }
+}
+@keyframes lean {
+  0%, 100% { transform: translateY(-7px)  scale(1.04); }
+  50%      { transform: translateY(-11px) scale(1.07); }
+}
+@keyframes haloLean {
+  0%, 100% { opacity: .95; transform: scale(.94) translateY(-6px); }
+  50%      { opacity: 1;   transform: scale(.99) translateY(-9px); }
+}
+@keyframes glance {
+  0%, 100% { transform: translateX(0); }
+  22%      { transform: translateX(-5px); }
+  62%      { transform: translateX(5px); }
+}
+@keyframes eyeWide {
+  0%, 100% { transform: scale(1.16, 1.26); }
+  50%      { transform: scale(1.2,  1.34); }
+}
+@keyframes pulseSpeak {
+  0%, 100% { transform: scale(1)     translateY(-2px); }
+  50%      { transform: scale(1.045) translateY(-5px); }
+}
+@keyframes haloSpeak {
+  0%, 100% { opacity: .75; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.1); }
+}
+@keyframes eyeSpeak {
+  0%, 100% { transform: scaleY(1); }
+  28%      { transform: scaleY(.78); }
+  56%      { transform: scaleY(1.12); }
+}
+@keyframes speakSway {
+  0%, 100% { transform: translateX(-2px); }
+  50%      { transform: translateX(2px); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0)    scale(1,    1);   }
+  18%      { transform: translateY(-20px) scale(.93,  1.1); }
+  44%      { transform: translateY(4px)   scale(1.09, .9);  }
+  68%      { transform: translateY(-7px)  scale(.98,  1.04);}
+  86%      { transform: translateY(1px)   scale(1.03, .97); }
+}
+@keyframes haloCele {
+  0%, 100% { opacity: .85; transform: scale(1); }
+  18%      { opacity: 1;   transform: scale(1.16); }
+  60%      { opacity: .9;  transform: scale(1.02); }
+}
+@keyframes eyeHappy {
+  0%, 100% { transform: scaleY(.4)  translateY(-1px); }
+  18%      { transform: scaleY(.3)  translateY(-3px); }
+  50%      { transform: scaleY(.46) translateY(0); }
+}
+@keyframes spark1 {
+  0%   { transform: translate(0,0)     scale(.3); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translate(-46px,-52px) scale(1); opacity: 0; }
+}
+@keyframes spark2 {
+  0%   { transform: translate(0,0)  scale(.3); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translate(8px,-70px) scale(1); opacity: 0; }
+}
+@keyframes spark3 {
+  0%   { transform: translate(0,0)   scale(.3); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translate(54px,-44px) scale(1); opacity: 0; }
+}
+@keyframes spark4 {
+  0%   { transform: translate(0,0)  scale(.3); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translate(64px,10px) scale(1); opacity: 0; }
+}
+@keyframes poseDrift {
+  0%, 100% { transform: translate(0,    0);    }
+  50%      { transform: translate(2px, -2px); }
+}
+
+/* ── layout ── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.arena {
+  position: relative;
+  width: 560px;
+  height: 420px;
+  max-width: 100%;
+}
+
+.mascotWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  height: 250px;
+}
+
+.orb {
+  position: absolute;
+  inset: 0;
+}
+
+.absCenter {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+/* transition targets */
+.bodyRot {
+  transition: transform 300ms cubic-bezier(.4, 0, .2, 1);
+}
+.faceRot {
+  transition: transform 300ms cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ── gaze buttons ── */
+
+.gazeBtn {
+  position: absolute;
+  font: 500 11.5px/1.45 system-ui, sans-serif;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(120, 70, 30, .15);
+  background: #fff;
+  color: #6b5a4e;
+  cursor: pointer;
+  white-space: nowrap;
+  z-index: 10;
+  transition: border-color .2s, background .2s, color .2s;
+}
+.gazeBtn:hover {
+  background: #fff;
+  border-color: #d2600f;
+  color: #d2600f;
+  transform: none;
+}
+.gazeBtn.active,
+.active {
+  background: #d2600f;
+  border-color: #d2600f;
+  color: #fdf6ee;
+}
+
+/* ── state strip ── */
+
+.stateStrip {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stateBtn {
+  font: 500 12px/1.45 system-ui, sans-serif;
+  padding: 9px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(120, 70, 30, .15);
+  background: #fff;
+  color: #6b5a4e;
+  cursor: pointer;
+  transition: all .2s;
+}
+.stateBtn:hover {
+  background: #fff;
+  border-color: #241d18;
+  color: #241d18;
+  transform: none;
+}
+
+.stateBtnActive {
+  background: #241d18;
+  border-color: #241d18;
+  color: #fdf6ee;
+}
+
+/* Must follow .stateBtnActive: equal specificity, so source order decides. */
+.stateBtnActive:hover {
+  background: #241d18;
+  border-color: #241d18;
+  color: #fdf6ee;
+}
+
+.statusLabel {
+  font: 400 11px/1.6 system-ui, sans-serif;
+  color: #8a7566;
+  margin-top: 10px;
+  letter-spacing: .03em;
+}
