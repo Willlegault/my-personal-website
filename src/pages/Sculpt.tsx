@@ -17,7 +17,6 @@ const adminScreenshot = new URL('../assets/sculpt-admin-analytics.png', import.m
 const ACCENT = '#FF4D06';
 const TEXT_PRIMARY = '#000000';
 const TEXT_SECONDARY = '#4A4A4A';
-const TEXT_MUTED = '#888888';
 const BORDER_SUBTLE = '#E5E5E5';
 
 /**
@@ -42,44 +41,44 @@ const HERO_GRADIENT = [
 
 const slides: CarouselSlide[] = [
   {
-    title: 'User overview',
-    caption: 'App-facing screenshot showing the main user experience and the layout direction I worked on.',
+    title: 'Plan generation',
+    caption: 'The last onboarding step: Sculpt builds a starter plan from the goals and muscle groups the user picked.',
     accent: ACCENT,
     image: appScreenshot1,
-    imageAlt: 'Sculpt app user screenshot 1',
-    note: 'User-facing screen',
+    imageAlt: 'Sculpt Generate Plan screen reading Understanding your goals, with Build Muscle, Gain Weight, Back, Core, and Legs chips',
+    note: 'Onboarding',
   },
   {
-    title: 'Workout flow detail',
-    caption: 'A screen focused on the workout flow and the inputs that feed the tracking experience.',
+    title: 'Workout logging',
+    caption: 'An active workout: exercise video, set progress, and a session timer, with one tap to log each set.',
     accent: '#1f2937',
     image: appScreenshot2,
-    imageAlt: 'Sculpt app user screenshot 2',
-    note: 'Workout logging flow',
+    imageAlt: 'Sculpt exercise screen showing an Alternating Lunge video, set 0 of 2, a timer, and a Log Set button',
+    note: 'Workout flow',
   },
   {
-    title: 'Exercise setup',
-    caption: 'A screen related to exercise setup and the inputs used in the admin experience.',
+    title: 'Weekly streak',
+    caption: 'Finishing a workout updates the weekly streak, which counts workouts and food logs toward the week\u2019s goal.',
     accent: '#0f172a',
     image: appScreenshot3,
-    imageAlt: 'Sculpt app user screenshot 3',
-    note: 'Exercise admin inputs',
+    imageAlt: 'Sculpt Workout Completed screen with a one week streak sheet showing 1 of 1 workouts and 1 of 1 food logs',
+    note: 'Streak tracking',
   },
   {
-    title: 'Tracking and calculations',
-    caption: 'A screen showing the tracking side of the experience, including the calculations that happen on the frontend.',
+    title: 'Calorie tracker',
+    caption: 'Calories remaining against the user\u2019s daily target, with a prompt to start their first streak.',
     accent: '#334155',
     image: appScreenshot4,
-    imageAlt: 'Sculpt app user screenshot 4',
-    note: 'Frontend calculations',
+    imageAlt: 'Sculpt Calorie Tracker showing calories remaining and a Building your first streak prompt',
+    note: 'Nutrition tracking',
   },
   {
-    title: 'Admin analytics view',
-    caption: 'Admin panel analytics view that reflects the internal tooling and data review work.',
+    title: 'Exercise CMS dashboard',
+    caption: 'The admin dashboard for the exercise library: 468 exercises and 27 muscle groups, broken down by category and difficulty.',
     accent: '#7c3aed',
     image: adminScreenshot,
-    imageAlt: 'Sculpt admin panel analytics view',
-    note: 'Admin panel analytics',
+    imageAlt: 'Sculpt admin dashboard with exercise, equipment, and muscle group counts and category and difficulty charts',
+    note: 'Admin CMS',
   },
 ];
 
@@ -120,7 +119,7 @@ const Sculpt: FC = () => {
             <div className="relative z-10">
               <div className="mb-6">
                 <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/75">
-                  Founding Developer · 1,000+ active users
+                  Software Engineer (Part Time) · 1,000+ users
                 </span>
               </div>
 
@@ -182,15 +181,15 @@ const Sculpt: FC = () => {
                 <div>
                   <h3 className="mb-3 inline-block pb-2 text-xl font-semibold" style={{ color: TEXT_PRIMARY, borderBottom: `2px solid ${ACCENT}`, letterSpacing: '-0.025em' }}>My Role</h3>
                   <p style={{ color: TEXT_SECONDARY }}>
-                    Founding Developer contributing across frontend engineering, product UI, and core user flows for a
-                    platform with 1,000+ active users.
+                    Part time software engineer across the React Native app, its GraphQL API, and the Next.js admin tools.
+                    I&rsquo;ve merged 165+ pull requests across 6 repositories for an app with 1,000+ users.
                   </p>
                 </div>
                 <div>
                    <h3 className="mb-3 inline-block pb-2 text-xl font-semibold" style={{ color: TEXT_PRIMARY, borderBottom: `2px solid ${ACCENT}`, letterSpacing: '-0.025em' }}>Collaboration</h3>
                    <p style={{ color: TEXT_SECONDARY }}>
-                    Worked closely with backend engineers and domain experts to verify algorithms, validate health analytics,
-                    and keep implementation aligned across the stack.
+                    I work with the backend engineers and with health professionals, who use the analytics tools I built
+                    to check the app&rsquo;s 1RM strength predictions and BMR/TDEE nutrition targets.
                    </p>
                 </div>
               </div>
@@ -198,31 +197,30 @@ const Sculpt: FC = () => {
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold" style={{ color: TEXT_PRIMARY, letterSpacing: '-0.025em' }}>What I've Done</h3>
                 <p className="mb-4" style={{ color: TEXT_SECONDARY }}>
-                  I own several of the systems that decide what users actually see: personalized health ranges for macro- and
-                  micronutrients, the interactive analytics graphs that turn backend health data into something readable, and the
-                  calculation layer behind rate of perceived exertion, progressive overload, and calorie targets. These areas
-                  need to be right rather than merely working, so I'm responsible for reviewing changes to them as well as
+                  I own several of the systems behind the numbers users see: personalized ranges for macronutrients and
+                  micronutrients, the analytics graphs that turn backend health data into something readable, and the
+                  calculations behind rate of perceived exertion, progressive overload, and calorie targets. A mistake here
+                  shows up as a wrong number on someone&rsquo;s screen, so I review changes to these areas as well as
                   building them.
                 </p>
                 <p className="mb-4" style={{ color: TEXT_SECONDARY }}>
-                  On the product side, I'm the primary developer shaping the app's UI/UX — smoothing the workout logging flow
-                  and onboarding, and continually tightening exercise entry, push notifications, and streak tracking. Most of
-                  this ships as my own work reviewed by a teammate.
+                  On the product side, I led the 10 screen onboarding flow and have worked on workout logging, exercise
+                  entry, push notifications, and streak tracking. Most of this ships as my own work, reviewed by a
+                  teammate.
                 </p>
               </div>
 
               <div className="mb-8">
                  <h3 className="mb-4 text-xl font-semibold" style={{ color: TEXT_PRIMARY, letterSpacing: '-0.025em' }}>Technical Execution</h3>
                  <p className="mb-4" style={{ color: TEXT_SECONDARY }}>
-                  I took over the internal exercise CMS after it was left half-finished and undocumented, and brought it back to
-                  a working state — it now handles exercises, workouts, splits, and automated plan generation. Restoring media
+                  I took over the internal exercise CMS after it was left half finished and undocumented, and got it working
+                  again. It now handles exercises, workouts, splits, and automated plan generation. Restoring media
                   upload meant rebuilding image and video cropping end to end and standing up a Dockerized image processor
                   writing to S3, alongside substantial frontend work to make the tool usable day to day.
                  </p>
                  <p className="mb-4" style={{ color: TEXT_SECONDARY }}>
-                  Across both codebases I favor modular, reusable implementation that reduces redundancy and leaves room for
-                  what's coming next, and I lean on Postman, Mixpanel, AWS Console, and Playwright to validate behavior and
-                  catch issues early.
+                  On the backend, I designed the weekly streak service so updates stay correct when two requests arrive at
+                  once, and built exercise replacements ranked by target muscle, both covered by Jest tests.
                  </p>
               </div>
 
@@ -243,19 +241,16 @@ const Sculpt: FC = () => {
                   AI Coach Mascot
                 </h3>
                 <p className="mb-6" style={{ color: TEXT_SECONDARY }}>
-                  I designed and built the coach mascot — an animated orb that gives Sculpt’s AI coach a physical presence.
-                  It currently has four states, and its gaze directs the user’s attention toward key actions on screen,
-                  so the assistant guides rather than just sits there. Everything is CSS keyframes and layered gradients
-                  with no animation library, keeping it light enough to run anywhere in the app.
+                  I designed and built the coach mascot, an animated orb for Sculpt’s AI coach. It has four states, and
+                  it can look toward a button or card to point the user at the next step. It&rsquo;s built entirely from
+                  CSS keyframes and layered gradients, with no animation library, so it&rsquo;s cheap to render anywhere in
+                  the app.
                 </p>
 
                 <div className="rounded-2xl border p-4" style={{ backgroundColor: '#FFFFFF', borderColor: BORDER_SUBTLE }}>
                   <CoachAvatarStage />
                 </div>
 
-                <p className="mt-4 text-sm" style={{ color: TEXT_MUTED }}>
-                  Interactive — switch states or point its gaze to see the transitions.
-                </p>
               </section>
             </div>
           </div>
