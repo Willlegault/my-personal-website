@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
+import { GiDna1 } from 'react-icons/gi';
 import Header from '../Components/Header';
 import HeroParticles from '../Components/HeroAnimation';
 // import { usePortfolioMode } from '../context/PortfolioModeContext'; // Preserved for filter feature
@@ -28,7 +29,7 @@ const Home: FC = () => {
   const [scrollActivated, setScrollActivated] = useState(false);
   const [activeProject, setActiveProject] = useState(0);
 
-  const projectNames = ['Active Husky', 'Sculpt.ai', 'Dot.Nite', 'Summit: Debt Relief', 'Sophia: Philosophical Journal', 'Explore on GitHub'];
+  const projectNames = ['Genomic Variant Analyzer', 'Sculpt.ai', 'Active Husky', 'Dot.Nite','Summit: Debt Relief', 'Sophia: Philosophical Journal', 'Explore on GitHub'];
 
   useEffect(() => {
     const container = document.getElementById('parallax-root');
@@ -115,7 +116,33 @@ const Home: FC = () => {
 
 
   const projectTiles = [
-    <Link to="/active-husky" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="active-husky">
+    <Link to="/genomic-variant-analyzer" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="genomic-variant-analyzer">
+      <div className="flex items-center mb-3">
+        <div className="w-10 h-10 mr-4 shrink-0 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center dark:bg-teal-900/40 dark:text-teal-300">
+          <GiDna1 className="text-2xl" aria-hidden="true" />
+        </div>
+        <div>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">Genomic Variant Analyzer <FiArrowRight className="text-indigo-400 text-xl" /></h3>
+          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300">Bioinformatics</span>
+        </div>
+      </div>
+      <p className="text-sm text-indigo-500 font-semibold mb-3">Python | Flask | Biopython | ClinVar API | Next.js</p>
+      <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">Detects DNA variants against a reference gene, classifies their effect on the protein, and explains each one alongside its ClinVar classification.</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Solo Project</p>
+    </Link>,
+    <Link to="/sculpt" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="sculpt">
+      <div className="flex items-center mb-3">
+        <img src={sculptIcon} alt="Sculpt Icon" className="w-10 h-10 mr-4"/>
+        <div>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">Sculpt.ai <FiArrowRight className="text-indigo-400 text-xl" /></h3>
+          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Health Tech</span>
+        </div>
+      </div>
+      <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | TypeScript | GraphQL | PostgreSQL | AWS</p>
+      <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">An adaptive health app for training, nutrition, and recovery, with analytics tools that let health professionals verify its algorithms.</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Software Engineer (Part-Time)</p>
+    </Link>,
+    <Link to="/active-husky"className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="active-husky">
       <div className="flex items-center mb-3">
         <img src={huskyBlackIcon} alt="Northeastern Husky Icon" className="w-10 h-10 mr-4"/>
         <div>
@@ -126,18 +153,6 @@ const Home: FC = () => {
       <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | AWS | Vercel | Node.js</p>
       <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">A fitness class scheduling and tracking platform built for Northeastern University students.</p>
       <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Lead Full-Stack Developer</p>
-    </Link>,
-    <Link to="/sculpt" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="sculpt">
-      <div className="flex items-center mb-3">
-        <img src={sculptIcon} alt="Sculpt Icon" className="w-10 h-10 mr-4"/>
-        <div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 flex items-center gap-2">Sculpt.ai <FiArrowRight className="text-indigo-400 text-xl" /></h3>
-          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">Mobile / CMS / Analytics</span>
-        </div>
-      </div>
-      <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | TypeScript | Apollo | GraphQL</p>
-      <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">The adaptive health app. One app for training, nutrition, recovery, and wearable data. Sculpt synthesizes your inputs and builds the plan, so you don't have to.</p>
-      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Software Developer</p>
     </Link>,
     <Link to="/dotnite" className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="dotnite">
       <div className="flex items-center mb-3">
@@ -200,10 +215,10 @@ const Home: FC = () => {
                 William D. Legault
               </h1>
               <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-5 leading-relaxed dark:text-slate-400">
-                Computer Science & Biology Student | Full-Stack Developer
+                Computer Science & Biology Student | Bioinformatics & Health Tech
               </p>
               <p className="text-base text-slate-600 mt-3 font-medium dark:text-slate-400">
-                Available: June - December 2026 | Boston, MA
+                Available: January - June 2027 | Boston, MA
               </p>
             </div>
 
@@ -223,47 +238,32 @@ const Home: FC = () => {
       </section>
 
       {/* Skills Section */}
-      {/* <section id="skills" className="pt-20 pb-10 px-6 relative scroll-mt-24">
-        <div className="max-w-[1100px] mx-auto relative z-10" data-aos="fade-up">
-          <h2 className="text-5xl font-extrabold mb-10 text-center tracking-tight text-slate-900 dark:text-slate-50">Technical Skills</h2>
-          <div className="grid grid-cols-1 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 dark:bg-slate-800 dark:border-slate-700">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <h3 className="text-xl font-bold mb-4 text-center text-slate-900 dark:text-slate-50 border-b pb-2">Languages</h3>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {['Java', 'Python', 'JavaScript', 'TypeScript', 'React', 'React Native', 'Kotlin'].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-4 text-center text-slate-900 dark:text-slate-50 border-b pb-2">Frameworks & Tools</h3>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {['Node.js', 'MongoDB', 'SQLite', 'Firebase', 'Express', 'Supabase', 'Git', 'AWS', 'Postman', 'Figma'].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-4 text-center text-slate-900 dark:text-slate-50 border-b pb-2">Relevant Knowledge</h3>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {['Object-Oriented Design', 'Data Structures', 'Cloud Architecture', 'Cybersecurity', 'Biostatistics'].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+      <section id="skills" className="pt-20 pb-6 px-6 scroll-mt-24 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-[1100px] mx-auto" data-aos="fade-up">
+          <h2 className="text-5xl font-extrabold mb-10 tracking-tight text-slate-900 dark:text-slate-50">Skills</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { title: 'Bioinformatics & Data', skills: ['Python', 'R', 'Biopython', 'Sequence Alignment', 'Variant Classification', 'ClinVar / NCBI E-utilities', 'pandas', 'Biostatistics', 'Data Visualization'] },
+              { title: 'Wet Lab', skills: ['PCR', 'Gel Electrophoresis', 'SDS-PAGE', 'DNA/RNA Quantification (NanoDrop)', 'Cell Culture'] },
+              { title: 'Software', skills: ['TypeScript', 'Java', 'React', 'React Native', 'Next.js', 'Flask', 'PostgreSQL', 'Supabase', 'AWS (Lambda, S3)'] },
+            ].map((group) => (
+              <div key={group.title} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 dark:bg-slate-800 dark:border-slate-700">
+                <h3 className="text-lg font-bold mb-4 text-slate-900 dark:text-slate-50">{group.title}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <span key={skill} className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </div>
+            ))}
           </div>
+          <p className="mt-6 text-sm text-slate-500 dark:text-slate-400">
+            <span className="font-semibold text-slate-700 dark:text-slate-300">Coursework:</span> Advanced Genomics, Biochemistry, Biostatistics (R), Genetics &amp; Molecular Biology, Algorithms &amp; Data Structures, Database Design
+          </p>
         </div>
-      </section> */}
+      </section>
 
       {/* Projects Section */}
       <section id="projects" className="scroll-mt-24 bg-slate-50 dark:bg-slate-900">

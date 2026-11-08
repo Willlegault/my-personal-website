@@ -30,6 +30,9 @@ const Header: React.FC = () => {
               </h1>
             </div>
             <div className="hidden md:flex items-center gap-8">
+              <a href="#skills" className="text-slate-500 text-[0.95rem] font-medium transition-colors duration-200 relative hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50 after:content-[''] after:absolute after:w-0 after:h-[2px] after:-bottom-1 after:left-0 after:bg-indigo-500 after:transition-[width] after:duration-300 hover:after:w-full">
+                Skills
+              </a>
               <a href="#projects" className="text-slate-500 text-[0.95rem] font-medium transition-colors duration-200 relative hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50 after:content-[''] after:absolute after:w-0 after:h-[2px] after:-bottom-1 after:left-0 after:bg-indigo-500 after:transition-[width] after:duration-300 hover:after:w-full">
                 Projects
               </a>
@@ -86,7 +89,7 @@ const Header: React.FC = () => {
                 </AnimatePresence>
               </div>
               <a
-                href="/resumes/Resume%20-%20Most%20Current-2.pdf"
+                href="/resumes/William_Legault_Resume_Biotech.pdf"
                 download
                 className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-semibold text-sm text-slate-700 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-slate-300 dark:text-slate-200 dark:border-slate-600 dark:bg-slate-800/60 dark:hover:border-slate-500"
               >
@@ -138,15 +141,15 @@ const Header: React.FC = () => {
                   <h2 className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-50">About Me</h2>
                 </div>
                 <p className="text-slate-600 leading-[1.6] text-sm dark:text-slate-400 mb-5">
-                  I'm a Computer Science and Biology student at Northeastern University, passionate about bridging technology and life sciences. I specialize in full-stack development, mobile apps, and cloud architecture, focusing on scalable, user-centered solutions.
+                  I'm a Computer Science and Biology student at Northeastern University, aiming for a career in biotech. I build bioinformatics tools, like a DNA variant analyzer backed by ClinVar, and health software, including analytics that let health professionals check nutrition and strength algorithms. I also have wet lab training in PCR, electrophoresis, and cell culture.
                 </p>
                 <div className="w-full bg-slate-50 p-4 rounded-xl border border-slate-200 dark:bg-slate-800 dark:border-slate-700 text-left">
                   <h3 className="text-base font-bold mb-2 text-slate-900 dark:text-slate-50">Education</h3>
                   <p className="font-semibold text-sm text-slate-900 dark:text-slate-50">B.S. in Computer Science & Biology</p>
-                  <p className="text-slate-600 text-sm mb-2 dark:text-slate-400">Northeastern University | May 2027</p>
+                  <p className="text-slate-600 text-sm mb-2 dark:text-slate-400">Northeastern University | Expected December 2027</p>
                   <h4 className="font-semibold text-xs text-slate-800 dark:text-slate-300">Key Coursework:</h4>
                   <p className="text-slate-600 text-xs mt-1 dark:text-slate-400">
-                    Database Design, Cloud Computing, Algorithms & Data Structures, Cybersecurity, Genetics and Molecular Biology
+                    Advanced Genomics, Biochemistry, Biostatistics (R), Genetics & Molecular Biology, Algorithms & Data Structures, Database Design
                   </p>
                 </div>
               </div>

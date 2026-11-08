@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import ActiveHusky from './pages/ActiveHusky';
 import Sculpt from './pages/Sculpt';
 import DotNite from './pages/DotNite';
+import GenomicVariantAnalyzer from './pages/GenomicVariantAnalyzer';
 import ScrollToTop from './Components/ScrollToTop';
 import { PortfolioModeProvider } from './context/PortfolioModeContext';
 import './App.css';
@@ -58,6 +59,7 @@ function App() {
             <Route path="/active-husky" element={<ActiveHusky />} />
             <Route path="/sculpt" element={<Sculpt />} />
             <Route path="/dotnite" element={<DotNite />} />
+            <Route path="/genomic-variant-analyzer" element={<GenomicVariantAnalyzer />} />
           </Routes>
         </div>
       </Router>

@@ -108,9 +108,9 @@ const ActiveHusky: FC = () => {
                 <div>
                   <h3 className="mb-3 inline-block pb-2 text-xl font-semibold" style={{ color: TEXT_PRIMARY, borderBottom: `2px solid ${PRIMARY}` }}>My Role</h3>
                   <p style={{ color: TEXT_PRIMARY }}>
-                    Full-stack developer across the React Native app, Express backend, and admin CMS. Interviewed and hired
-                    the incoming co-op developer, then owned onboarding and mentorship for two developers — reviewing their
-                    pull requests and planning their work as they ramped onto the platform.
+                    Full stack developer across the React Native app, Express backend, and admin CMS. I interviewed and hired
+                    the incoming co-op developer, then onboarded and mentored two developers, reviewing their pull requests
+                    and planning their work while they got up to speed.
                   </p>
                 </div>
                 <div>
@@ -125,7 +125,7 @@ const ActiveHusky: FC = () => {
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold" style={{ color: TEXT_PRIMARY }}>What I've Done</h3>
                 <p className="mb-4" style={{ color: TEXT_PRIMARY }}>
-                  Active Husky is Northeastern's group fitness platform — a React Native app shipped on the App Store and
+                  Active Husky is Northeastern's group fitness platform: a React Native app on the App Store and
                   Google Play, an Express/MongoDB backend, and a Next.js admin CMS used by rec center staff to run classes,
                   memberships, and scheduling. I've worked across all three since joining, contributing to class booking,
                   waitlists, QR check-in, messaging, and the member and instructor experiences.
@@ -140,9 +140,9 @@ const ActiveHusky: FC = () => {
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold" style={{ color: TEXT_PRIMARY }}>Technical Execution</h3>
                  <p className="mb-4" style={{ color: TEXT_PRIMARY }}>
-                  Notifications were the hardest thing to get right. iOS and Android needed different providers — Expo Push
-                  and native Firebase Cloud Messaging — so the app resolves per device while the backend routes through one
-                  service that respects each member's per-category preferences. Getting Firebase onto Android without
+                  Notifications were the hardest thing to get right. iOS and Android needed different providers (Expo Push
+                  and native Firebase Cloud Messaging), so the app picks one per device while the backend sends everything
+                  through one service that respects each member's preferences for each notification type. Getting Firebase onto Android without
                   breaking iOS meant excluding it at three separate autolinking layers and loading it dynamically, so the
                   app degrades gracefully instead of crashing where the native module can't load. I documented the whole
                   architecture for the team.
@@ -154,9 +154,9 @@ const ActiveHusky: FC = () => {
                   authentication layer, including the token refresh and retry logic the admin CMS depends on.
                  </p>
                  <p className="mb-4" style={{ color: TEXT_PRIMARY }}>
-                  Reliability work runs through all of it — Sentry crash monitoring, a Notion-backed in-app feedback
-                  pipeline, and client-side guards against duplicate requests. With three codebases that deploy together,
-                  most of my time goes to keeping changes coordinated and backward compatible.
+                  I also set up Sentry crash monitoring, an in-app feedback form that files reports to Notion, and guards
+                  in the app against duplicate requests. With three codebases that deploy together, most of my time goes
+                  to keeping changes coordinated and backward compatible.
                  </p>
               </div>
 

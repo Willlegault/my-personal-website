@@ -52,7 +52,7 @@ const slides: CarouselSlide[] = [
   {
     title: 'Replay viewer with move analysis',
     caption:
-      'Step, rewind, or jump to any move. Each one is re-scored against the position as it actually stood \u2014 best, okay, or bad \u2014 and glows on the board for the verdict.',
+      'Step, rewind, or jump to any move. Each move is graded best, okay, or bad against the board as it stood, and glows on the board to show the verdict.',
     accent: ACCENT,
     image: replayScreenshot,
     imageAlt: 'Dot.Nite replay viewer showing the board, per-player stat summary, and replay transport controls',
@@ -122,7 +122,7 @@ const CODE_STYLE = { backgroundColor: '#EEF1FA', color: '#3C5390' };
 const DEEP_DIVES: { title: string; summary: string; body: ReactNode }[] = [
   {
     title: 'Snapshot-per-move replay enables retroactive move grading',
-    summary: 'A data-modeling choice that unlocked the product feature.',
+    summary: 'Storing the full board after every move is what made grading possible.',
     body: (
       <>
         <p className="mb-3">
@@ -132,10 +132,9 @@ const DEEP_DIVES: { title: string; summary: string; body: ReactNode }[] = [
           <code className="rounded px-1.5 py-0.5 text-[0.85em]" style={CODE_STYLE}>
             rateDotsAndBoxesMove
           </code>{' '}
-          can re-score any move without replaying from the beginning — <strong>best</strong> (completes a box),{' '}
-          <strong>bad</strong> (draws a third side, gifting the opponent a free box), or <strong>okay</strong> — and the
-          replay board renders a colored glow for the verdict. The storage cost buys a feature a move-only log couldn&rsquo;t
-          support.
+          can grade any move without replaying from the beginning: <strong>best</strong> (completes a box),{' '}
+          <strong>bad</strong> (draws a third side, gifting the opponent a free box), or <strong>okay</strong>. The replay
+          board then shows a colored glow for the verdict. A log of moves alone wouldn&rsquo;t have allowed this.
         </p>
         <p>
           I built the generic replay path against the two simpler games on the platform first, so it never became
@@ -152,7 +151,7 @@ const DEEP_DIVES: { title: string; summary: string; body: ReactNode }[] = [
         Every game declares three types in the shared workspace: <strong>State</strong> (what the server stores),{' '}
         <strong>View</strong> (what a player may see), and <strong>Move</strong> (what a player may send).{' '}
         <strong>View</strong> is a strictly narrower type than <strong>State</strong>, so hidden information can&rsquo;t
-        leak to a client by construction — it isn&rsquo;t a runtime check a client could skip. The server also publishes
+        leak to a client by construction. It isn&rsquo;t a runtime check a client could skip. The server also publishes
         the legal move set with every view, so the client renders exactly the playable edges instead of reimplementing
         the rules.
       </p>
@@ -169,7 +168,7 @@ const DEEP_DIVES: { title: string; summary: string; body: ReactNode }[] = [
         writes <code className="text-[0.85em]">--skin-header</code>, <code className="text-[0.85em]">--skin-accent</code>,{' '}
         <code className="text-[0.85em]">--skin-body</code>, <code className="text-[0.85em]">--skin-text</code> and
         friends onto <code className="text-[0.85em]">document.documentElement</code> when the equipped skin changes. One
-        context write restyles the entire app — no prop-drilling, no re-render cascade through the component tree. The
+        context write restyles the entire app without passing props down or re-rendering the component tree. The
         gameplay and shop screenshots below are the same build under two different equipped skins.
       </p>
     ),
@@ -190,7 +189,7 @@ const DEEP_DIVES: { title: string; summary: string; body: ReactNode }[] = [
           'Per-move author, timestamp, and per-turn duration',
           'Filterable game history by outcome, opponent, and date',
           'Stats: boxes per turn, longest streak, win/loss by game type',
-          'Ranked ladder \u2014 Bronze to Diamond, four sort modes',
+          'Ranked ladder from Bronze to Diamond, with four sort modes',
           'Cosmetics shop with owned/equipped states',
           'Forum with threads and comments',
           'Two more games (Nim, Number Guesser) on the same abstraction',
@@ -212,7 +211,7 @@ const DEEP_DIVES: { title: string; summary: string; body: ReactNode }[] = [
       <p>
         Rank points and spendable coins are tracked as independent balances, so spending in the shop never costs you
         rank. Rank is recomputed in chronological order with a floor of zero, so a losing streak can&rsquo;t push a
-        player negative — and a loss at 0 rank correctly displays no penalty instead of −25.
+        player negative, and a loss at 0 rank correctly shows no penalty instead of −25.
       </p>
     ),
   },
@@ -426,7 +425,7 @@ const DotNite: FC = () => {
                   Auditing this codebase after the course ended, I found our own project report was wrong: we claimed
                   bot games don't affect rank, but neither{' '}
                   <code className="text-[0.85em]">getPlayerStatsByUsername</code> nor{' '}
-                  <code className="text-[0.85em]">getLeaderboard</code> filters AI games out of the calculation — so
+                  <code className="text-[0.85em]">getLeaderboard</code> filters AI games out of the calculation, so
                   beating the easy bot pays the same +25 rank as beating a person. A real leaderboard-integrity bug,
                   small fix, still open.
                 </p>
