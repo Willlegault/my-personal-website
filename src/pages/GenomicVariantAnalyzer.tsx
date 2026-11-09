@@ -11,6 +11,7 @@ const inputScreenshot = new URL('../assets/gva-input.jpg', import.meta.url).href
 const founderScreenshot = new URL('../assets/gva-founder-explained.jpg', import.meta.url).href;
 const multiChartsScreenshot = new URL('../assets/gva-multi-charts.jpg', import.meta.url).href;
 const multiVariantsScreenshot = new URL('../assets/gva-multi-variants.jpg', import.meta.url).href;
+const alphafoldSlide = (n: number) => new URL(`../assets/alphafold-0${n}.jpg`, import.meta.url).href;
 
 /* Design tokens: a lab bench teal on a deep green, so the page reads as life
    science rather than reusing another project's palette. */
@@ -66,6 +67,66 @@ const slides: CarouselSlide[] = [
     note: 'My work',
   },
 ];
+
+/* Slides from a drug discovery pitch I gave in class with Daniel Wong and Ran Guo. */
+const alphafoldSlides: CarouselSlide[] = [
+  {
+    title: 'AlphaFold',
+    caption: 'A class pitch on using AI structure prediction to speed up drug discovery.',
+    accent: ACCENT,
+    image: alphafoldSlide(1),
+    imageAlt: 'Title slide: AlphaFold, AI structure prediction for faster drug discovery',
+  },
+  {
+    title: 'A drug in 21 months',
+    caption: 'Paxlovid moved fast because its target had a close relative mapped after SARS in 2003.',
+    accent: '#4ADE80',
+    image: alphafoldSlide(2),
+    imageAlt: 'Timeline of the Paxlovid program from March 2020 to emergency use authorization in December 2021',
+  },
+  {
+    title: 'Two searches too big to brute force',
+    caption: 'Finding a protein’s shape and finding a drug that fits it are both huge searches with weak scoring and scarce data.',
+    accent: '#FACC15',
+    image: alphafoldSlide(3),
+    imageAlt: 'Slide comparing 5 times 10 to the 47 possible protein folds with over 10 billion molecules in a screening library',
+  },
+  {
+    title: 'How AlphaFold works',
+    caption: 'It compares a protein across species, attends to which positions constrain which, refines its answer, and scores its own confidence.',
+    accent: ACCENT,
+    image: alphafoldSlide(4),
+    imageAlt: 'Diagram of AlphaFold 3 turning an amino acid sequence into a 3D structure with a bound drug, in four steps',
+  },
+  {
+    title: 'Three versions',
+    caption: 'From first place at CASP13 in 2018 to AlphaFold 3, which models proteins together with DNA, RNA and drugs.',
+    accent: '#60A5FA',
+    image: alphafoldSlide(5),
+    imageAlt: 'Timeline of AlphaFold 1 in 2018, AlphaFold 2 in 2020, and AlphaFold 3 in 2024',
+  },
+  {
+    title: 'AlphaFold vs. ESMFold',
+    caption: 'ESMFold is faster but reads one chain at a time; AlphaFold 3 places a drug against its protein.',
+    accent: '#F59E0B',
+    image: alphafoldSlide(6),
+    imageAlt: 'Comparison of ESMFold and AlphaFold 3 speed and accuracy on one and two molecules',
+  },
+  {
+    title: 'What it changes, and what it doesn’t',
+    caption: 'Drug fit is right 40 to 60% of the time, and labs and trials stay, but the front of the pipeline gets much shorter.',
+    accent: '#F87171',
+    image: alphafoldSlide(7),
+    imageAlt: 'Slide on AlphaFold limits: 40 to 60 percent drug fit accuracy, one frozen shape, lab validation, and clinical trials',
+  },
+  {
+    title: 'The ask',
+    caption: 'Map the key proteins of three WHO priority virus families and find drug candidates before an outbreak, not after.',
+    accent: ACCENT,
+    image: alphafoldSlide(8),
+    imageAlt: 'Closing slide asking for a 15 million dollar seed round to map priority virus proteins',
+  },
+].map((slide) => ({ ...slide, note: 'Group project' }));
 
 const carouselTheme = {
   accent: ACCENT,
@@ -156,6 +217,19 @@ const DETAILS: { title: string; summary: string; body: ReactNode }[] = [
       </ul>
     ),
   },
+  {
+    title: 'My AlphaFold research',
+    summary: 'Slides from a drug discovery pitch I gave in class.',
+    body: (
+      <>
+        <p className="mb-4">
+          With two classmates, I pitched a company that uses AlphaFold 3 to map proteins from priority viruses before
+          an outbreak. Researching it is what got me thinking about adding protein structure to this analyzer.
+        </p>
+        <ScreenshotCarousel slides={alphafoldSlides} theme={carouselTheme} eyebrow="Class pitch" orientation="landscape" />
+      </>
+    ),
+  },
 ];
 
 const NEXT_STEPS: { title: string; body: string }[] = [
@@ -165,7 +239,7 @@ const NEXT_STEPS: { title: string; body: string }[] = [
   },
   {
     title: 'Add protein structure with AlphaFold',
-    body: 'I’ve been researching AlphaFold and plan to place each variant on its predicted structure, so the model can tell a change in the folded core or a binding site from one on a flexible surface. C61G, shown above, replaces a cysteine that holds a zinc ion in BRCA1, which makes it a good first test.',
+    body: 'I’ve been researching AlphaFold (my class pitch on it is under More detail above) and plan to place each variant on its predicted structure, so the model can tell a change in the folded core or a binding site from one on a flexible surface. C61G, shown above, replaces a cysteine that holds a zinc ion in BRCA1, which makes it a good first test.',
   },
   {
     title: 'Learn how biotech teams build ML pipelines',
