@@ -119,7 +119,7 @@ const Sculpt: FC = () => {
             <div className="relative z-10">
               <div className="mb-6">
                 <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/75">
-                  Software Engineer (Part Time) · 1,000+ users
+                  Software Engineer · 1,000+ users
                 </span>
               </div>
 
@@ -181,7 +181,7 @@ const Sculpt: FC = () => {
                 <div>
                   <h3 className="mb-3 inline-block pb-2 text-xl font-semibold" style={{ color: TEXT_PRIMARY, borderBottom: `2px solid ${ACCENT}`, letterSpacing: '-0.025em' }}>My Role</h3>
                   <p style={{ color: TEXT_SECONDARY }}>
-                    Part time software engineer across the React Native app, its GraphQL API, and the Next.js admin tools.
+                    Software engineer across the React Native app, its GraphQL API, and the Next.js admin tools.
                     I&rsquo;ve merged 165+ pull requests across 6 repositories for an app with 1,000+ users.
                   </p>
                 </div>
