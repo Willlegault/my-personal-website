@@ -140,7 +140,7 @@ const Home: FC = () => {
       </div>
       <p className="text-sm text-indigo-500 font-semibold mb-3">React Native | TypeScript | GraphQL | PostgreSQL | AWS</p>
       <p className="text-slate-600 mb-2 leading-[1.7] dark:text-slate-400">An adaptive health app for training, nutrition, and recovery, with analytics tools that let health professionals verify its algorithms.</p>
-      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Software Engineer (Part-Time)</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 italic">Role: Software Engineer</p>
     </Link>,
     <Link to="/active-husky"className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 dark:bg-slate-800 dark:border-slate-700 cursor-pointer" key="active-husky">
       <div className="flex items-center mb-3">
